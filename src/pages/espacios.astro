@@ -69,13 +69,12 @@ try {
         ORDER BY orden ASC
       `;
 
-      const safeParseOptions = (opciones: any): string[] => {
+      const safeParseOptions = (opciones: any): any => {
         if (!opciones) return [];
-        if (Array.isArray(opciones)) return opciones;
+        if (typeof opciones === 'object') return opciones;
         if (typeof opciones === 'string') {
           try {
-            const parsed = JSON.parse(opciones);
-            if (Array.isArray(parsed)) return parsed;
+            return JSON.parse(opciones);
           } catch(e) {}
           return opciones.split(',').map((s: string) => s.trim()).filter(Boolean);
         }

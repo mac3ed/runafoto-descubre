@@ -307,7 +307,7 @@
       <div class="welcome-card glass">
         <div class="logo-area">
           <img 
-            src={cuestionario?.metadatos?.logoUrl || '/logo-escuela.png'} 
+            src={cuestionario?.metadatos?.logoUrl || '/logo-oficial-runafoto.png'} 
             alt="RunaFoto" 
             style="max-height: 80px; max-width: 260px; width: auto; height: auto; object-fit: contain;" 
           />
@@ -341,7 +341,7 @@
       <ProgressBar value={progreso} variant="slim" />
       <div class="header-details">
         <img 
-          src={cuestionario?.metadatos?.logoUrl || '/logo-escuela.png'} 
+          src={cuestionario?.metadatos?.logoUrl || '/logo-oficial-runafoto.png'} 
           alt="RunaFoto" 
           class="logo-header" 
           style="max-height: 28px; max-width: 120px; width: auto; object-fit: contain;" 

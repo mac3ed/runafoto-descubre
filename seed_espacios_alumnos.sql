@@ -25,7 +25,7 @@ ON CONFLICT (id) DO UPDATE SET
 
 -- 3. Insertar Cuestionario para Alumnos
 INSERT INTO cuestionario (id, hito_id, nombre, descripcion, version, metadatos) VALUES
-('c8888888-8888-8888-8888-888888888888', 'e8888888-8888-8888-8888-888888888888', '¡Queremos saber de ti y tu experiencia en los Nuevos Espacios! 📸✨', 'Cuéntanos qué te parecen las nuevas instalaciones inauguradas este 22 de Agosto de 2026, qué te gustaría practicar más y cómo podemos hacer tus clases aún más increíbles.', 4, '{"audiencia": "Alumnos de Escuela RunaFoto", "sede": "Trujillo - Av. América Oeste 801", "logoUrl": "/logo-escuela.png"}'::jsonb)
+('c8888888-8888-8888-8888-888888888888', 'e8888888-8888-8888-8888-888888888888', '¡Queremos saber de ti y tu experiencia en los Nuevos Espacios! 📸✨', 'Cuéntanos qué te parecen las nuevas instalaciones inauguradas este 22 de Agosto de 2026, qué te gustaría practicar más y cómo podemos hacer tus clases aún más increíbles.', 5, '{"audiencia": "Alumnos de Escuela RunaFoto", "sede": "Trujillo - Av. América Oeste 801", "logoUrl": "/logo-oficial-runafoto.png"}'::jsonb)
 ON CONFLICT (id) DO UPDATE SET
   nombre = EXCLUDED.nombre,
   descripcion = EXCLUDED.descripcion,
