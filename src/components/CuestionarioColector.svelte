@@ -470,14 +470,14 @@
             <div class="corta-wrapper">
               <textarea 
                 class="text-input glass" 
-                placeholder={preguntaActual.texto.toLowerCase().includes('nombre') ? 'Escribe tu nombre o apodo aquí (opcional)...' : 'Escribe tu respuesta aquí (opcional)...'}
+                placeholder={preguntaActual.texto.toLowerCase().includes('nombre') ? 'Escribe tu nombre y apellido (opcional)...' : 'Escribe tu mensaje o sugerencia aquí (opcional)...'}
                 value={typeof respuestaDada === 'string' ? respuestaDada : (respuestaDada?.respuesta || '')}
                 oninput={(e) => handleRespuesta((e.target as HTMLTextAreaElement).value)}
-                rows="4"
+                rows="3"
               ></textarea>
               {#if esOpcional}
                 <div class="optional-hint">
-                  <span>💡 Esta respuesta es 100% opcional. Puedes dejarla en blanco y avanzar.</span>
+                  <span>💡 Esta respuesta es opcional. Puedes dejarla en blanco y continuar.</span>
                 </div>
               {/if}
             </div>
