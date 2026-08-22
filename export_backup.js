@@ -8,7 +8,7 @@ const sql = postgres('postgresql://runafoto_user:runafoto_secure_password_2026@l
 
 async function backup() {
   const data = {
-    hitos: await sql`SELECT * FROM hito ORDER BY creado_en DESC NULLS LAST`,
+    hitos: await sql`SELECT * FROM hito`,
     dimensiones: await sql`SELECT * FROM dimension`,
     cuestionarios: await sql`SELECT * FROM cuestionario`,
     preguntas: await sql`SELECT * FROM pregunta ORDER BY orden ASC`,

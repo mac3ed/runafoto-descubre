@@ -1,0 +1,2102 @@
+{
+  "hitos": [
+    {
+      "id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "nombre": "Descubrimiento Organizacional RunaFoto",
+      "fecha_inicio": "2026-07-08T17:39:33.350Z",
+      "fecha_fin": "2026-07-23T17:39:33.350Z",
+      "activo": true
+    },
+    {
+      "id": "e8888888-8888-8888-8888-888888888888",
+      "nombre": "Inauguración Nuevos Espacios - Escuela RunaFoto 2026",
+      "fecha_inicio": "2026-08-22T14:34:36.302Z",
+      "fecha_fin": "2026-10-21T14:34:36.302Z",
+      "activo": true
+    }
+  ],
+  "dimensiones": [
+    {
+      "id": "negocio_crecimiento",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "codigo": "D1",
+      "nombre": "Negocio y Crecimiento",
+      "descripcion": "Diagnóstico por línea (potencial, esfuerzo, dependencia de Douglas, quién financia a quién) + decisión de crecimiento (duplicar, digitalizar, vender manuales, descontinuar)",
+      "color": "hsl(24, 90%, 55%)"
+    },
+    {
+      "id": "comercial",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "codigo": "D2",
+      "nombre": "Comercial",
+      "descripcion": "Diferencias reales de vender Bodas vs. Empresas vs. Escuela vs. Promofest vs. XV — ya no cómo venden, sino qué distingue a cada una",
+      "color": "hsl(142, 70%, 45%)"
+    },
+    {
+      "id": "operaciones",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "codigo": "D3",
+      "nombre": "Operaciones",
+      "descripcion": "Diferencias operativas entre líneas, conflictos de recursos, estacionalidad, capacidad instalada",
+      "color": "hsl(200, 80%, 45%)"
+    },
+    {
+      "id": "informacion",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "codigo": "D4",
+      "nombre": "Información",
+      "descripcion": "Dónde nace y dónde debería vivir el dato maestro, quién lo modifica — la capa de datos",
+      "color": "hsl(270, 70%, 55%)"
+    },
+    {
+      "id": "organizacion",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "codigo": "D5",
+      "nombre": "Organización",
+      "descripcion": "Dependencia, sucesión, entrenamiento, documentación — foco en escalar, no en organigrama",
+      "color": "hsl(330, 85%, 55%)"
+    },
+    {
+      "id": "tecnologia_automatizacion",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "codigo": "D6",
+      "nombre": "Tecnología y Automatización",
+      "descripcion": "Qué herramienta específica integra cada dato — WhatsApp, Contasis, CRM, IA — la capa de sistema (RunaCore)",
+      "color": "hsl(190, 90%, 40%)"
+    },
+    {
+      "id": "espacios_perfil",
+      "hito_id": "e8888888-8888-8888-8888-888888888888",
+      "codigo": "E1",
+      "nombre": "Tu Formación en RunaFoto",
+      "descripcion": "Programa, curso o taller y período o módulo en el que te encuentras.",
+      "color": "hsl(210, 85%, 55%)"
+    },
+    {
+      "id": "espacios_satisfaccion",
+      "hito_id": "e8888888-8888-8888-8888-888888888888",
+      "codigo": "E2",
+      "nombre": "Experiencia y Buenas Vibras",
+      "descripcion": "Satisfacción general con la Escuela, recomendación y aprendizaje práctico.",
+      "color": "hsl(145, 70%, 45%)"
+    },
+    {
+      "id": "espacios_conocimiento",
+      "hito_id": "e8888888-8888-8888-8888-888888888888",
+      "codigo": "E3",
+      "nombre": "Los 10 Nuevos Espacios",
+      "descripcion": "Nivel de recorrido, ambientes que más te emocionan y primeras impresiones.",
+      "color": "hsl(280, 75%, 55%)"
+    },
+    {
+      "id": "espacios_utilidad",
+      "hito_id": "e8888888-8888-8888-8888-888888888888",
+      "codigo": "E4",
+      "nombre": "Práctica y Creación",
+      "descripcion": "Estudio de iluminación, proyectos de portafolio y frecuencia deseada.",
+      "color": "hsl(25, 95%, 55%)"
+    },
+    {
+      "id": "espacios_recursos",
+      "hito_id": "e8888888-8888-8888-8888-888888888888",
+      "codigo": "E5",
+      "nombre": "Equipos y Acompañamiento",
+      "descripcion": "Disponibilidad de cámaras, luces, accesorios y apoyo del equipo docente/técnico.",
+      "color": "hsl(190, 85%, 45%)"
+    },
+    {
+      "id": "espacios_mejoras",
+      "hito_id": "e8888888-8888-8888-8888-888888888888",
+      "codigo": "E6",
+      "nombre": "Ideas y Mejoras",
+      "descripcion": "Barreras para aprovechar los espacios, mejoras deseadas y tu voz para seguir creciendo.",
+      "color": "hsl(340, 80%, 55%)"
+    }
+  ],
+  "cuestionarios": [
+    {
+      "id": "c1111111-1111-1111-1111-111111111111",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "nombre": "Gerencia General y Desarrollo de Producto",
+      "descripcion": "Cuestionario estratégico nivel dirección sobre toma de decisiones, flujo de negocio y crecimiento.",
+      "version": 1,
+      "metadatos": {}
+    },
+    {
+      "id": "c2222222-2222-2222-2222-222222222222",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "nombre": "Administración General",
+      "descripcion": "Cuestionario estratégico nivel dirección y administración general sobre finanzas y control de activos.",
+      "version": 1,
+      "metadatos": {}
+    },
+    {
+      "id": "c3333333-3333-3333-3333-333333333333",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "nombre": "Coordinación Académica",
+      "descripcion": "Cuestionario enfocado en la coordinación académica y flujos de finanzas de Escuela.",
+      "version": 1,
+      "metadatos": {}
+    },
+    {
+      "id": "c4444444-4444-4444-4444-444444444444",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "nombre": "Coordinación Operativa (Norte)",
+      "descripcion": "Cuestionario enfocado en escalamiento operativo y coordinación (Trujillo/Norte).",
+      "version": 1,
+      "metadatos": {}
+    },
+    {
+      "id": "c7777777-7777-7777-7777-777777777777",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "nombre": "Coordinación Operativa (Lima/Sur)",
+      "descripcion": "Cuestionario sobre operation en Lima, aptitud comercial y documentación.",
+      "version": 1,
+      "metadatos": {}
+    },
+    {
+      "id": "c5555555-5555-5555-5555-555555555555",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "nombre": "Producción",
+      "descripcion": "Cuestionario de descubrimiento operativo para realizadores, postproducción y diseño.",
+      "version": 1,
+      "metadatos": {}
+    },
+    {
+      "id": "c6666666-6666-6666-6666-666666666666",
+      "hito_id": "aa345b10-67a8-4bb9-bdff-c0dd01234567",
+      "nombre": "Contabilidad y Finanzas",
+      "descripcion": "Cuestionario sobre flujo financiero y conciliación de información contable.",
+      "version": 1,
+      "metadatos": {}
+    },
+    {
+      "id": "c8888888-8888-8888-8888-888888888888",
+      "hito_id": "e8888888-8888-8888-8888-888888888888",
+      "nombre": "¡Queremos saber de ti y tu experiencia en los Nuevos Espacios! 📸✨",
+      "descripcion": "Cuéntanos qué te parecen las nuevas instalaciones inauguradas este 22 de Agosto de 2026, qué te gustaría practicar más y cómo podemos hacer tus clases aún más increíbles.",
+      "version": 7,
+      "metadatos": {
+        "sede": "Trujillo - Av. América Oeste 801",
+        "logoUrl": "/logo-oficial-runafoto.png",
+        "audiencia": "Alumnos de Escuela RunaFoto"
+      }
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "2f2d27cb-3372-4dfd-975d-adf890c54920",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_01",
+      "texto": "Si solo pudieras duplicar una línea de negocio durante los próximos 12 meses, ¿cuál elegirías y por qué?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 1,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000001",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_01",
+      "texto": "¿Qué formación estás cursando actualmente y en qué período te encuentras?",
+      "tipo": "FORMACION_PERIODO",
+      "opciones": {
+        "periodos": [
+          "Mes 1 – 3 (Conociendo tu Cámara / Fundamentos)",
+          "Mes 4 – 6 (Composición Visual)",
+          "Mes 7 – 9 (Iluminación Artificial / Estudio)",
+          "Mes 10 – 12 (Fotocreativa, Portafolio o Comercial)",
+          "Finalizado / Egresado(a)"
+        ],
+        "formaciones": [
+          "Programa Integral de Fotografía (1 año)",
+          "Video Desde Cero (3 meses)",
+          "Workshop Adobe Lightroom",
+          "Creación de Contenido con Celular para Emprendedores",
+          "Masterclass Newborn",
+          "Cierres Efectivos para Fotógrafos Escolares",
+          "Otro taller o curso"
+        ]
+      },
+      "dimension_id": "espacios_perfil",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 1,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000002",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_02",
+      "texto": "En general, ¿qué tan feliz y satisfecho/a estás con tu experiencia en Escuela RunaFoto?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "⭐⭐⭐⭐⭐ ¡Me encanta! Excelente experiencia de aprendizaje",
+        "⭐⭐⭐⭐ Muy buena, estoy aprendiendo un montón",
+        "⭐⭐⭐ Regular, está bien pero puede mejorar",
+        "⭐⭐ Poco satisfecho/a, esperaba algo diferente",
+        "⭐ Muy insatisfecho/a"
+      ],
+      "dimension_id": "espacios_satisfaccion",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 2,
+      "respuesta_critica": null
+    },
+    {
+      "id": "6dcd8a89-df49-4575-9715-c9a3aff0dd83",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_02",
+      "texto": "¿Qué parte de tu forma de vender consideras que marca la mayor diferencia frente a la competencia, y por qué crees que funciona?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "comercial",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 2,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000003",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_03",
+      "texto": "¿Sientes que tus clases te permiten \"aprender haciendo\" con práctica real?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "📸 ¡Totalmente! Mucha práctica con cámara y luces desde el inicio",
+        "👍 La mayor parte del tiempo",
+        "⚖️ A veces, me gustaría que haya aún más horas de práctica",
+        "⏳ Siento que todavía predomina la teoría"
+      ],
+      "dimension_id": "espacios_satisfaccion",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 3,
+      "respuesta_critica": null
+    },
+    {
+      "id": "0acf5397-93bb-4e4b-8fcc-21267a0465d0",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_03",
+      "texto": "¿Qué parte de tu experiencia vendiendo todavía depende de ti y aún no está documentada en ninguno de tus manuales?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 3,
+      "respuesta_critica": null
+    },
+    {
+      "id": "497b4dd5-4b9d-489c-b3a8-cf0005bc4f29",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_04",
+      "texto": "Si mañana contrataras tres vendedores nuevos, ¿en qué orden los entrenarías, y por qué ese orden?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 4,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000004",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_04",
+      "texto": "¿Qué tan probable es que le recomiendes la Escuela RunaFoto a un amigo o colega apasionado por la foto o video?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "🚀 ¡De todas maneras! (10/10)",
+        "✨ Muy probable",
+        "🤔 Tal vez, con algunas mejoras",
+        "🙅‍♂️ Poco probable"
+      ],
+      "dimension_id": "espacios_satisfaccion",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 4,
+      "respuesta_critica": null
+    },
+    {
+      "id": "08273bdd-f0e7-4d18-a146-c3e5d600f5d1",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_05",
+      "texto": "¿Qué línea dejarías crecer sola, sin supervisión tuya, y cuál seguirías supervisando personalmente?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 5,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000005",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_05",
+      "texto": "¿Qué tanto conoces de los 10 nuevos Espacios inaugurados en nuestra sede de Trujillo?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "🏢 ¡Ya los conozco y he tenido prácticas en ellos!",
+        "👀 Los he recorrido / visitado, pero aún no los uso en clase",
+        "📱 Los he visto en redes sociales y publicaciones",
+        "🙋‍♂️ Aún no los he recorrido ni conozco en detalle"
+      ],
+      "dimension_id": "espacios_conocimiento",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 5,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000006",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_06",
+      "texto": "¿Cuál de los nuevos ambientes te genera mayor emoción o ganas de usar en tus prácticas?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "💡 Estudio profesional de iluminación, fondos y esquemas de luz",
+        "🏛️ Museo de la Fotografía (con más de 60 cámaras históricas)",
+        "🎞️ Laboratorio de fotografía analógica Blanco y Negro",
+        "💻 Aulas tecnológicas equipadas para clases y edición digital",
+        "🚁 Almacén tecnológico (drones, VR, cámaras, luces y audio)",
+        "💄 Área de maquillaje y producción visual"
+      ],
+      "dimension_id": "espacios_conocimiento",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 6,
+      "respuesta_critica": null
+    },
+    {
+      "id": "4f84d799-95aa-4415-94bc-430b84149941",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_06",
+      "texto": "Cuando el nuevo equipo de ventas de Escuela empiece a recibir los leads directamente, ¿qué tendría que pasar para que confíes plenamente en que pueden trabajar sin tu intervención?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 6,
+      "respuesta_critica": null
+    },
+    {
+      "id": "60399d2c-1056-4d9c-977c-03e5bd761d1c",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_07",
+      "texto": "¿Qué decisión te gustaría dejar de tomar este año?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 7,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000007",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_07",
+      "texto": "¿Qué tan útil consideras el acceso continuo al Estudio de Iluminación para tu crecimiento como fotógrafo/a?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "🔥 Indispensable para soltarme y armar portafolio pro",
+        "✨ Muy útil y necesario para dominar la luz",
+        "👍 Moderadamente útil",
+        "🤷 No es mi enfoque principal"
+      ],
+      "dimension_id": "espacios_utilidad",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 7,
+      "respuesta_critica": null
+    },
+    {
+      "id": "213dbeb1-9ed2-42d7-92c6-d7c7acbaa428",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_08",
+      "texto": "Si desaparecieras un mes, ¿qué dejaría de hacerse?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 8,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000008",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_08",
+      "texto": "¿En qué tipo de actividad te gustaría aprovechar al máximo estos nuevos Espacios?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "🎯 Prácticas libres guiadas para ganar confianza con la cámara",
+        "💼 Construcción de mi propio portafolio profesional",
+        "🎬 Proyectos audiovisuales, rodajes y creación de contenido",
+        "🧪 Workshops especializados de iluminación y dirección de personas",
+        "🎨 Experimentación artística en el laboratorio B&N y museo"
+      ],
+      "dimension_id": "espacios_utilidad",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 8,
+      "respuesta_critica": null
+    },
+    {
+      "id": "6219f5f7-abeb-49f3-992c-fd8499bc3b08",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "codigo": "DOU_UNI",
+      "texto": "Cuéntanos, en tus palabras, cualquier fallo, reclamo o eventualidad no deseada — con un cliente, con la organización interna, con la agenda, o con el equipo.",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 9,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000009",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_09",
+      "texto": "¿Cómo sientes la disponibilidad de equipos y el acompañamiento docente para tus prácticas?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "🚀 Excelente: equipos listos y siempre hay apoyo de los profes",
+        "✅ Muy buena, cumple con lo que necesito",
+        "⚠️ Regular: a veces faltan equipos o apoyo en horas punta",
+        "🔧 Me gustaría mayor variedad de modificadores y acompañamiento técnico"
+      ],
+      "dimension_id": "espacios_recursos",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 9,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000010",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_10",
+      "texto": "Si pudieras elegir una mejora inmediata en los nuevos espacios, ¿cuál te gustaría ver primero?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "🔓 Más turnos de estudio libre para practicar a mi ritmo",
+        "💡 Workshops prácticos intensivos de esquemas de luz y poses",
+        "📸 Mayor variedad de modificadores, fondos y ópticas",
+        "📱 Protocolo rápido y simple de reserva por WhatsApp o web",
+        "🌟 Salidas y prácticas de producción con clientes reales"
+      ],
+      "dimension_id": "espacios_mejoras",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 10,
+      "respuesta_critica": null
+    },
+    {
+      "id": "8801d64d-f196-46f8-9802-53ecf9bb8d28",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "codigo": "BET_01",
+      "texto": "De todas las responsabilidades que manejas hoy, ¿cuál tendría el mayor impacto si pudiera delegarse o automatizarse primero?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 10,
+      "respuesta_critica": null
+    },
+    {
+      "id": "b8000000-0000-0000-0000-000000000011",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "codigo": "ESP_11",
+      "texto": "Comentarios Finales y Tu Nombre (Opcional)",
+      "tipo": "FEEDBACK_FINAL",
+      "opciones": [],
+      "dimension_id": "espacios_mejoras",
+      "version": 5,
+      "pregunta_padre_id": null,
+      "orden": 11,
+      "respuesta_critica": null
+    },
+    {
+      "id": "68ab6b12-6dde-4ee8-b4e1-ffc988773ade",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "codigo": "BET_02",
+      "texto": "Si pudieras aprobar de antemano un tipo de pago (con una regla o límite) para no revisarlo uno por uno, ¿cuál soltarías primero?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "tecnologia_automatizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 11,
+      "respuesta_critica": null
+    },
+    {
+      "id": "bfd243b3-f1fb-4ab7-bc3f-c024f36428a9",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "codigo": "BET_03",
+      "texto": "¿Qué es lo que siempre revisas para asegurarte de que un pago está conforme antes de aprobarlo?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "informacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 12,
+      "respuesta_critica": null
+    },
+    {
+      "id": "6a95cc1d-e994-43be-acc8-9c27f73b0a33",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "codigo": "BET_04",
+      "texto": "Con el operador de almacén/logístico por entrar, ¿qué necesitarías tener ya documentado para que asuma el control de activos sin depender de tu memoria?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 13,
+      "respuesta_critica": null
+    },
+    {
+      "id": "15934cbc-3a6b-494c-95ef-2592c705399e",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "codigo": "BET_05",
+      "texto": "Si cada lunes recibieras un único reporte sobre Escuela, ¿qué información no debería faltar?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 14,
+      "respuesta_critica": null
+    },
+    {
+      "id": "8721becc-b272-418e-9280-6297b3bd5794",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "codigo": "BET_06",
+      "texto": "Con el nuevo vendedor de Escuela por entrar, ¿qué más ayudaría a revertir la caída en 6 meses — mejor contenido, capacitación del vendedor, o más publicidad?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "comercial",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 15,
+      "respuesta_critica": null
+    },
+    {
+      "id": "8ad5bae6-c367-4413-a6a2-5c7be0027edc",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "codigo": "BET_07",
+      "texto": "¿Existe hoy un lugar único donde pueda conocerse qué equipos tiene la empresa, en qué estado están, quién los tiene y cuándo les corresponde mantenimiento, o esa información depende principalmente de la experiencia del equipo?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "informacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 16,
+      "respuesta_critica": null
+    },
+    {
+      "id": "9cb19385-8bd4-47f6-9488-25e0c3d84ec4",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "codigo": "BET_UNI",
+      "texto": "Cuéntanos, en tus palabras, cualquier fallo, reclamo o eventualidad no deseada — con un cliente, con la organización interna, con la agenda, o con el equipo.",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 17,
+      "respuesta_critica": null
+    },
+    {
+      "id": "f5025770-767e-4820-b101-6f581ebee206",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_01",
+      "texto": "¿Cuál es la capacidad máxima de alumnos que Escuela podría atender hoy, con la infraestructura actual (salones, profesores)?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "operaciones",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 18,
+      "respuesta_critica": null
+    },
+    {
+      "id": "032c8e11-c8c3-47ae-8894-703697db8552",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_02",
+      "texto": "¿Qué porcentaje de alumnos no termina el programa completo y cuál suele ser la principal razón por la que abandonan?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 19,
+      "respuesta_critica": null
+    },
+    {
+      "id": "d53232a2-a790-4bc4-8191-8d73fc9fa94e",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_03",
+      "texto": "De los cursos que ofrece Escuela, ¿cuál deja mejor margen y cuál consume más tiempo administrativo en proporción a lo que genera?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 20,
+      "respuesta_critica": null
+    },
+    {
+      "id": "6f255338-2e8b-4dd9-883f-8a6155973424",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_04",
+      "texto": "Cuando preparas los Proyectados, ¿en qué parte del proceso suelen aparecer diferencias entre lo proyectado y lo que finalmente se cobra o registra?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "informacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 21,
+      "respuesta_critica": null
+    },
+    {
+      "id": "891a7bd9-f1cd-4a95-bc7d-5f8500200aa1",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_05",
+      "texto": "¿Qué indicador de Escuela deberías poder ver cada semana, y hoy tienes que calcularlo a mano?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "tecnologia_automatizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 22,
+      "respuesta_critica": null
+    },
+    {
+      "id": "43e5d9d0-9577-4faa-8c1b-46b720a130d7",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_06",
+      "texto": "Para que el nuevo vendedor pueda trabajar bien desde el día uno, ¿qué información tuya necesitaría tener siempre a la mano?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 23,
+      "respuesta_critica": null
+    },
+    {
+      "id": "8146a170-1fc7-44b4-9ce4-6388c84fa55d",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_07",
+      "texto": "¿Cuáles son los errores que más probablemente cometería un vendedor nuevo si no conociera bien cómo funciona Escuela?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 24,
+      "respuesta_critica": null
+    },
+    {
+      "id": "0161611e-db35-41e4-ad68-5cfd426d65e0",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_08",
+      "texto": "Si mañana ingresara un nuevo vendedor, ¿qué conocimientos consideras indispensables para que pueda atender correctamente a un prospecto desde el primer día?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "comercial",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 25,
+      "respuesta_critica": null
+    },
+    {
+      "id": "add9edd8-8890-48fe-92aa-3c20b7b7abae",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "codigo": "KAR_UNI",
+      "texto": "Cuéntanos, en tus palabras, cualquier fallo, reclamo o eventualidad no deseada — con un cliente, con la organización interna, con la agenda, o con el equipo.",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 26,
+      "respuesta_critica": null
+    },
+    {
+      "id": "1637dafa-7ddd-45cb-afcb-58600491e95a",
+      "cuestionario_id": "c4444444-4444-4444-4444-444444444444",
+      "codigo": "JEN_01",
+      "texto": "De todo lo que haces, ¿qué actividad dejaría de depender del criterio de cada persona si existiera un checklist claro?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 27,
+      "respuesta_critica": null
+    },
+    {
+      "id": "3c05a1d8-73c3-4c60-9a36-c94e32e064fd",
+      "cuestionario_id": "c4444444-4444-4444-4444-444444444444",
+      "codigo": "JEN_02",
+      "texto": "¿Qué de lo que haces hoy debería generar el sistema automáticamente, sin que tú lo armes?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "tecnologia_automatizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 28,
+      "respuesta_critica": null
+    },
+    {
+      "id": "361f3763-b8c4-4840-8682-808ec7b1e509",
+      "cuestionario_id": "c4444444-4444-4444-4444-444444444444",
+      "codigo": "JEN_03",
+      "texto": "Si tuvieras que estandarizar un solo proceso entre Trujillo y Lima este año, ¿cuál elegirías?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "operaciones",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 29,
+      "respuesta_critica": null
+    },
+    {
+      "id": "2d6b065c-7e48-4dd9-ad50-af1d3a731db5",
+      "cuestionario_id": "c4444444-4444-4444-4444-444444444444",
+      "codigo": "JEN_04",
+      "texto": "¿Qué proveedor sería más difícil de reemplazar si dejara de trabajar con ustedes?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 30,
+      "respuesta_critica": null
+    },
+    {
+      "id": "2e247220-29ed-4b03-90cf-449bdc25f4c3",
+      "cuestionario_id": "c4444444-4444-4444-4444-444444444444",
+      "codigo": "JEN_05",
+      "texto": "Si enseñaras a alguien en Lima a coordinar exactamente como tú, ¿qué le explicarías primero?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 31,
+      "respuesta_critica": null
+    },
+    {
+      "id": "c3df03f2-c330-4f2e-bef3-bd3705c3d521",
+      "cuestionario_id": "c4444444-4444-4444-4444-444444444444",
+      "codigo": "JEN_UNI",
+      "texto": "Cuéntanos, en tus palabras, cualquier fallo, reclamo o eventualidad no deseada — con un cliente, con la organización interna, con la agenda, o con el equipo.",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 32,
+      "respuesta_critica": null
+    },
+    {
+      "id": "6c8c10c6-c59c-4e8a-b8c7-4151a76302f8",
+      "cuestionario_id": "c7777777-7777-7777-7777-777777777777",
+      "codigo": "JOS_01",
+      "texto": "Manejando Lima y el sur sin oficina física, ¿qué es distinto en tu día a día comparado con cómo opera Jenne desde Trujillo?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 33,
+      "respuesta_critica": null
+    },
+    {
+      "id": "1d159bb1-792b-4ab3-b5c5-77703efa6fcd",
+      "cuestionario_id": "c7777777-7777-7777-7777-777777777777",
+      "codigo": "JOS_02",
+      "texto": "Se sabe que ayudas de alguna forma en la venta de Bodas — ¿en qué momento del proceso intervienes exactamente (primer contacto, seguimiento, cierre)?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "comercial",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 34,
+      "respuesta_critica": null
+    },
+    {
+      "id": "7be6ae19-5414-48ee-ae69-f33fbb21de43",
+      "cuestionario_id": "c7777777-7777-7777-7777-777777777777",
+      "codigo": "JOS_03",
+      "texto": "Si mañana contrataran otra persona para apoyar tu coordinación en Lima, ¿qué sería lo primero que tendrías que enseñarle para que pueda ayudarte?",
+      "tipo": "CORTA",
+      "opciones": "[]",
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 35,
+      "respuesta_critica": null
+    },
+    {
+      "id": "f1a59588-b2e8-4b13-87bb-9c3b3f751399",
+      "cuestionario_id": "c7777777-7777-7777-7777-777777777777",
+      "codigo": "JOS_04",
+      "texto": "De lo que ya haces hoy en venta de Bodas, ¿qué parte sientes más natural y cuál más forzada?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "comercial",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 36,
+      "respuesta_critica": null
+    },
+    {
+      "id": "91f2352c-0816-4d85-b9c2-8f14fd672ca9",
+      "cuestionario_id": "c7777777-7777-7777-7777-777777777777",
+      "codigo": "JOS_UNI",
+      "texto": "Cuéntanos, en tus palabras, cualquier fallo, reclamo o eventualidad no deseada — con un cliente, con la organización interna, con la agenda, o con el equipo.",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 37,
+      "respuesta_critica": null
+    },
+    {
+      "id": "cf6fac3e-fe32-45af-a666-d094fd4850a4",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_01",
+      "texto": "¿Qué tan seguido esperas aprobación para continuar un trabajo?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "Todos los días",
+        "Varias veces por semana",
+        "Rara vez",
+        "Nunca"
+      ],
+      "dimension_id": "operaciones",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 38,
+      "respuesta_critica": null
+    },
+    {
+      "id": "5b91dc32-76e1-4dfb-a376-22b378f0fb61",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_02",
+      "texto": "¿Qué tan seguido cambia el alcance de un trabajo ya iniciado?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "Todos los días",
+        "Varias veces por semana",
+        "Rara vez",
+        "Nunca"
+      ],
+      "dimension_id": "operaciones",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 39,
+      "respuesta_critica": null
+    },
+    {
+      "id": "4f084299-e59e-4666-9bd0-4f213537c693",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_03",
+      "texto": "¿Qué tan seguido repites un trabajo que ya habías hecho?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "Todos los días",
+        "Varias veces por semana",
+        "Rara vez",
+        "Nunca"
+      ],
+      "dimension_id": "operaciones",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 40,
+      "respuesta_critica": null
+    },
+    {
+      "id": "2f832b6c-8b98-428c-ba9b-a0beb6a26285",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_04",
+      "texto": "¿Cuál es la capacidad máxima de eventos simultáneos que podrían cubrir con el equipo y personal actual?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "operaciones",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 41,
+      "respuesta_critica": null
+    },
+    {
+      "id": "d8527e9d-2cf3-488e-be0e-e29ad8859a66",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_05",
+      "texto": "¿Qué parte de tu trabajo te consume más tiempo y te gustaría automatizar o simplificar primero?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "tecnologia_automatizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 42,
+      "respuesta_critica": null
+    },
+    {
+      "id": "13ccef88-63f2-43ce-abf0-09bed40678fe",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_06",
+      "texto": "¿Usan plantillas o procesos ya estandarizados, como los \"6 momentos\" de Promofest, en otras líneas, o es exclusivo de esa línea?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 43,
+      "respuesta_critica": null
+    },
+    {
+      "id": "34b63c30-6e25-4e04-8846-581d6bb8abac",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_07",
+      "texto": "Si mañana tuvieran una nueva herramienta para trabajar, ¿qué tendría que hacer para que realmente les facilitara el trabajo y no se convirtiera en una carga más?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "tecnologia_automatizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 44,
+      "respuesta_critica": null
+    },
+    {
+      "id": "a4a6ee0e-8d25-4247-810b-f2fdd1526ab3",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_08",
+      "texto": "¿Qué equipo o recurso se reutiliza entre líneas, y cuál está siempre disponible sin conflicto?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "operaciones",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 45,
+      "respuesta_critica": null
+    },
+    {
+      "id": "7721e5a8-8ff5-45d9-bc2c-231cd5658da8",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "codigo": "PRO_UNI",
+      "texto": "Cuéntanos, en tus palabras, cualquier fallo, reclamo o eventualidad no deseada — con un cliente, con la organización interna, con la agenda, o con el equipo.",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 46,
+      "respuesta_critica": null
+    },
+    {
+      "id": "1fc42176-4790-4446-a90f-fb84cca6138f",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "codigo": "YER_01",
+      "texto": "¿Qué tan seguido el mismo pago te obliga a revisar más de un lugar?",
+      "tipo": "OPCION_MULTIPLE",
+      "opciones": [
+        "Todos los días",
+        "Varias veces por semana",
+        "Rara vez",
+        "Nunca"
+      ],
+      "dimension_id": "informacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 47,
+      "respuesta_critica": null
+    },
+    {
+      "id": "8629ec3f-9a6f-4d35-b172-d36e050d1f5e",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "codigo": "YER_02",
+      "texto": "¿Qué reporte necesita hoy la Dirección/Gerencia y todavía no existe o requiere demasiado trabajo para elaborarlo?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 48,
+      "respuesta_critica": null
+    },
+    {
+      "id": "25038647-4b5e-4dc3-8f37-361028571789",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "codigo": "YER_03",
+      "texto": "¿Qué indicador financiero debería poder verse a diario, y hoy solo se calcula de vez en cuando?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "tecnologia_automatizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 49,
+      "respuesta_critica": null
+    },
+    {
+      "id": "968f2f75-5404-4e26-8b85-8fa3f614767f",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "codigo": "YER_04",
+      "texto": "¿Qué datos deberían alimentar automáticamente un dashboard gerencial, si pudieras elegir 3?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "tecnologia_automatizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 50,
+      "respuesta_critica": null
+    },
+    {
+      "id": "0f2995de-58b3-43f2-b2bc-94c0a1f68860",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "codigo": "YER_05",
+      "texto": "Usando Contasis, ¿qué tareas te consumen más tiempo durante el cierre contable?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "operaciones",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 51,
+      "respuesta_critica": null
+    },
+    {
+      "id": "280be4fb-7ce1-44c4-890a-7d242d5324c0",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "codigo": "YER_06",
+      "texto": "¿Cómo coordinas hoy el cierre contable con la asesoría externa y qué parte del proceso suele generar más demoras?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 52,
+      "respuesta_critica": null
+    },
+    {
+      "id": "c4763e32-29d3-4a07-8476-fbb46b416fd1",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "codigo": "YER_07",
+      "texto": "Si hoy la Gerencia quisiera conocer el margen real de cada línea de negocio, ¿podrían obtenerlo? ¿Qué información necesitarían y cuánto tiempo tomaría?",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "negocio_crecimiento",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 53,
+      "respuesta_critica": null
+    },
+    {
+      "id": "58f904c6-ef03-4f8f-8efd-6e68ccc42880",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "codigo": "YER_UNI",
+      "texto": "Cuéntanos, en tus palabras, cualquier fallo, reclamo o eventualidad no deseada — con un cliente, con la organización interna, con la agenda, o con el equipo.",
+      "tipo": "CORTA",
+      "opciones": [],
+      "dimension_id": "organizacion",
+      "version": 1,
+      "pregunta_padre_id": null,
+      "orden": 54,
+      "respuesta_critica": null
+    }
+  ],
+  "asignaciones": [
+    {
+      "id": "a0000000-0000-0000-0000-000000000005",
+      "cuestionario_id": "c7777777-7777-7777-7777-777777777777",
+      "token": "token-josefh-coor",
+      "tipo_sujeto": "INDIVIDUAL",
+      "identificador_sujeto": "Coordinación Operativa (Lima/Sur)",
+      "muestra_esperada": 1,
+      "estado": "COMPLETADO",
+      "creado_en": "2026-07-08T17:39:33.365Z",
+      "completado_en": "2026-07-09T15:31:21.487Z",
+      "guardado_parcial": false
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000007",
+      "cuestionario_id": "c6666666-6666-6666-6666-666666666666",
+      "token": "token-yeri-cont",
+      "tipo_sujeto": "INDIVIDUAL",
+      "identificador_sujeto": "Contabilidad y Finanzas",
+      "muestra_esperada": 1,
+      "estado": "COMPLETADO",
+      "creado_en": "2026-07-08T17:39:33.365Z",
+      "completado_en": "2026-07-08T22:38:09.000Z",
+      "guardado_parcial": false
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000001",
+      "cuestionario_id": "c1111111-1111-1111-1111-111111111111",
+      "token": "token-douglas-dir",
+      "tipo_sujeto": "INDIVIDUAL",
+      "identificador_sujeto": "Gerencia General y Dirección de Producto",
+      "muestra_esperada": 1,
+      "estado": "COMPLETADO",
+      "creado_en": "2026-07-08T17:39:33.365Z",
+      "completado_en": "2026-07-09T04:04:54.195Z",
+      "guardado_parcial": false
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000006",
+      "cuestionario_id": "c5555555-5555-5555-5555-555555555555",
+      "token": "token-produccion-grupo",
+      "tipo_sujeto": "GRUPAL",
+      "identificador_sujeto": "Equipo de Producción",
+      "muestra_esperada": 2,
+      "estado": "COMPLETADO",
+      "creado_en": "2026-07-08T17:39:33.365Z",
+      "completado_en": null,
+      "guardado_parcial": false
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000002",
+      "cuestionario_id": "c2222222-2222-2222-2222-222222222222",
+      "token": "token-betty-dir",
+      "tipo_sujeto": "INDIVIDUAL",
+      "identificador_sujeto": "Administración General",
+      "muestra_esperada": 1,
+      "estado": "COMPLETADO",
+      "creado_en": "2026-07-08T17:39:33.365Z",
+      "completado_en": "2026-07-09T23:08:41.457Z",
+      "guardado_parcial": false
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000004",
+      "cuestionario_id": "c4444444-4444-4444-4444-444444444444",
+      "token": "token-jenne-coor",
+      "tipo_sujeto": "INDIVIDUAL",
+      "identificador_sujeto": "Coordinación Operativa (Norte)",
+      "muestra_esperada": 1,
+      "estado": "COMPLETADO",
+      "creado_en": "2026-07-08T17:39:33.365Z",
+      "completado_en": "2026-07-09T16:31:16.559Z",
+      "guardado_parcial": false
+    },
+    {
+      "id": "a0000000-0000-0000-0000-000000000003",
+      "cuestionario_id": "c3333333-3333-3333-3333-333333333333",
+      "token": "token-karla-acad",
+      "tipo_sujeto": "INDIVIDUAL",
+      "identificador_sujeto": "Coordinación Académica",
+      "muestra_esperada": 1,
+      "estado": "COMPLETADO",
+      "creado_en": "2026-07-08T17:39:33.365Z",
+      "completado_en": "2026-07-09T16:22:32.312Z",
+      "guardado_parcial": false
+    },
+    {
+      "id": "a8888888-8888-8888-8888-888888888888",
+      "cuestionario_id": "c8888888-8888-8888-8888-888888888888",
+      "token": "token-espacios-alumnos",
+      "tipo_sujeto": "GRUPAL",
+      "identificador_sujeto": "Alumnos Escuela RunaFoto",
+      "muestra_esperada": 5000,
+      "estado": "LANZADO",
+      "creado_en": "2026-08-22T14:34:36.302Z",
+      "completado_en": null,
+      "guardado_parcial": false
+    }
+  ],
+  "respuestas": [
+    {
+      "id": "a91b23a1-588c-4851-b588-ac335af0e44b",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000004",
+      "pregunta_id": "3c05a1d8-73c3-4c60-9a36-c94e32e064fd",
+      "valor": {
+        "esTest": false,
+        "deviceId": "u05jrx2zvh",
+        "sesionId": "aqtglkpzjn",
+        "respuesta": "el seguimiento de la cobertura y entrega de productos finales de los eventos, especialmente sociales.\n\nEl seguimiento del cumplimiento de las coberturas y entrega de productos audiovisuales en las promociones. Al finalizar la entrega de sus productos físicos ( anuario, cuadro, fotos etc)",
+        "fingerprint": "922d1dfe"
+      },
+      "creado_en": "2026-07-09T15:17:29.031Z",
+      "actualizado_en": "2026-07-09T16:31:16.559Z"
+    },
+    {
+      "id": "eeb59736-bbb3-413b-9c0c-0ffc76adcfcb",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000004",
+      "pregunta_id": "2d6b065c-7e48-4dd9-ad50-af1d3a731db5",
+      "valor": {
+        "esTest": false,
+        "deviceId": "u05jrx2zvh",
+        "sesionId": "aqtglkpzjn",
+        "respuesta": "el de photobook y anuarios",
+        "fingerprint": "922d1dfe"
+      },
+      "creado_en": "2026-07-09T16:21:03.959Z",
+      "actualizado_en": "2026-07-09T16:31:16.559Z"
+    },
+    {
+      "id": "d384efb2-277a-4464-a2d2-e81b2e6ebb0f",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000007",
+      "pregunta_id": "1fc42176-4790-4446-a90f-fb84cca6138f",
+      "valor": {
+        "esTest": false,
+        "deviceId": "mg9zrbo2fvp",
+        "sesionId": "srio5ewsdd",
+        "respuesta": "Todos los días",
+        "fingerprint": "ed8b8bac"
+      },
+      "creado_en": "2026-07-08T21:21:10.605Z",
+      "actualizado_en": "2026-07-08T22:39:28.894Z"
+    },
+    {
+      "id": "f5fdc98f-048f-4801-a2a0-68b558f2da56",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000007",
+      "pregunta_id": "968f2f75-5404-4e26-8b85-8fa3f614767f",
+      "valor": {
+        "esTest": false,
+        "deviceId": "mg9zrbo2fvp",
+        "sesionId": "srio5ewsdd",
+        "respuesta": "ventas e ingresos en tiempo real\nMargen de utilidad ",
+        "fingerprint": "ed8b8bac"
+      },
+      "creado_en": "2026-07-08T21:40:33.012Z",
+      "actualizado_en": "2026-07-08T22:39:28.894Z"
+    },
+    {
+      "id": "a59857b7-badc-44a3-ae27-dbb5b72fdbb2",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000007",
+      "pregunta_id": "58f904c6-ef03-4f8f-8efd-6e68ccc42880",
+      "valor": {
+        "esTest": false,
+        "deviceId": "mg9zrbo2fvp",
+        "sesionId": "srio5ewsdd",
+        "respuesta": "En algunas oportunidades se presentó un retraso en la recepción de información necesaria para generar factura , lo que podía afectar los tiempos de abono por parte del cliente. ",
+        "fingerprint": "ed8b8bac"
+      },
+      "creado_en": "2026-07-08T22:38:09.136Z",
+      "actualizado_en": "2026-07-08T22:39:28.894Z"
+    },
+    {
+      "id": "12f49e2f-0c7f-4267-9766-34020ca92762",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "f5025770-767e-4820-b101-6f581ebee206",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "Cuatro grupos de 8 a 15 personas por dia ",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T15:46:37.466Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "5481278e-5787-46d9-b291-c5456bfb7780",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "6219f5f7-abeb-49f3-992c-fd8499bc3b08",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "Olvido de agenda por parte de la coordinación. Presentación de agenda tarde al área operativa. Comunicacion vertical y no horizontal. Insatisfacción de cuadros o anuarios de colegios. Temas de hechura, tamaño o números de fotografías. Libros de boda no aceptados y sin embargo imprimimos, etc. ",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T04:03:32.378Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "0452ca4b-40a9-4f89-80ee-987cb3a891c0",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "032c8e11-c8c3-47ae-8894-703697db8552",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "De un 20%  a 30%, por tema de cruce de sus horarios. ",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T15:48:09.566Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "0d8e8fdb-8a24-426d-9819-8bdad19b96cb",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000002",
+      "pregunta_id": "bfd243b3-f1fb-4ab7-bc3f-c024f36428a9",
+      "valor": {
+        "esTest": false,
+        "deviceId": "rak1qr8d8u",
+        "sesionId": "xqms7i93ae",
+        "respuesta": "Me envían una orden de pago donde dice : proyecto , empresa, monto a abonar, saldo pendiente saldo total si es recibo facturado o sin nada .   Al final de mes cruzamos información de lo que egrese con lo que los coordinadores solicitaron pagar/ oara fiscalizar que no se desvíe ninguna solicitud de egreso a proveedores ",
+        "fingerprint": "4c8cdace"
+      },
+      "creado_en": "2026-07-09T19:18:55.489Z",
+      "actualizado_en": "2026-07-09T23:08:41.457Z"
+    },
+    {
+      "id": "f9a1f8e2-7f2d-482c-8b3e-71961f32b92c",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000005",
+      "pregunta_id": "7be6ae19-5414-48ee-ae69-f33fbb21de43",
+      "valor": {
+        "esTest": false,
+        "deviceId": "xvyxdqz5ked",
+        "sesionId": "ns5ahsj2ahj",
+        "respuesta": "Primero debe conocer claramente el modelo de negocio de Runafoto, los proceso internos que hay, la gestión que se realiza con los diferentes tipos de clientes. ",
+        "fingerprint": "6afbc1ac"
+      },
+      "creado_en": "2026-07-09T15:24:40.466Z",
+      "actualizado_en": "2026-07-09T15:31:21.487Z"
+    },
+    {
+      "id": "e7078469-9e8d-4cd3-9900-635663292950",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "13ccef88-63f2-43ce-abf0-09bed40678fe",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "Se usan plantillas para coberturas de colegios( recap sesiones colegios) o para fotos sueltas de escuela (back)",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:10:06.443Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "10cef9dc-6743-47f8-9f25-c992acd64e18",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "4f084299-e59e-4666-9bd0-4f213537c693",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "Varias veces por semana",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:06:07.347Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "0209d7a3-3ea4-43fb-8789-e1e6714cb5b9",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "6dcd8a89-df49-4575-9715-c9a3aff0dd83",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "La estructura comunicacional, estrategia de usar material tangible y brindar beneficios y el conocimiento real de un mercado potente y cambiante a la vez. El unificar servicios hace que los novios encuentren todo en un solo lugar. Todo en Runafoto. Adicional a ello, también el uso de la sociología y psicología en ventas. Entender a los clientes, novios y seres humanos, ayuda a poder tener una capacidad más amplia de comunicación y resolución de problemas. ",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T03:53:44.987Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "a6bed6b9-92df-4991-9c4c-bbb90e61e1d6",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "60399d2c-1056-4d9c-977c-03e5bd761d1c",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "Dejar de llamar la atención al área operativa, administrativa y coordinaacion. Establecer una cultura organizacional basada en la comunicación asertiva, disposición y capacidad de resolver problemas. ",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T04:01:55.974Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "3579dd66-4884-454a-8a79-ceafd419de4b",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000007",
+      "pregunta_id": "8629ec3f-9a6f-4d35-b172-d36e050d1f5e",
+      "valor": {
+        "esTest": false,
+        "deviceId": "mg9zrbo2fvp",
+        "sesionId": "srio5ewsdd",
+        "respuesta": "Toma tiempo en elaboración de reporte de bodas , colegios y xv años ",
+        "fingerprint": "ed8b8bac"
+      },
+      "creado_en": "2026-07-08T21:21:37.467Z",
+      "actualizado_en": "2026-07-08T22:39:28.894Z"
+    },
+    {
+      "id": "5e1f9c05-af32-4ac6-aee4-85a98b4725d5",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000007",
+      "pregunta_id": "0f2995de-58b3-43f2-b2bc-94c0a1f68860",
+      "valor": {
+        "esTest": false,
+        "deviceId": "mg9zrbo2fvp",
+        "sesionId": "srio5ewsdd",
+        "respuesta": "Registro de ventas \nRegistro de detracciones \n",
+        "fingerprint": "ed8b8bac"
+      },
+      "creado_en": "2026-07-08T21:41:33.688Z",
+      "actualizado_en": "2026-07-08T22:39:28.894Z"
+    },
+    {
+      "id": "5f68a043-2155-4075-8f80-83f35b568de8",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "213dbeb1-9ed2-42d7-92c6-d7c7acbaa428",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "Ventas. Se reducen. Porque aún interiorizan que cada venta ayuda a crecer a la empresa. ",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T04:02:45.894Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "f8280042-8a16-465d-b3f3-aee66ab0538b",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "a4a6ee0e-8d25-4247-810b-f2fdd1526ab3",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "El celular iPhone 13, que se usa para grabar y editar, pero es 1 para 2 personas y no tiene WhatsApp lo que dificulta el traspaso de material para poder editar en otro dispositivo. Y en cuanto al iPhone 11 no cuenta con buena cámara para grabar pero si cuenta con WhatsApp pero no cuenta con almacenamiento. ",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:15:48.968Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "ad50a9ff-7123-4957-812b-f541206809f1",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "2f2d27cb-3372-4dfd-975d-adf890c54920",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "Bodas. \nPorque es un nicho que se puede replicar de manera sencilla. Armar un equipo de profesionales, tecnológicos y estrategias de venta, ayudaron a tener varios brazos comerciales y cajas a nivel nacional que ayuden a rentabilizar a la agencia. El egreso es el 40% y el retorno en 60%. Si logramos tener una venta anual en varias sedes, solo un equipo se encargaría de despachar. ",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T03:52:12.734Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "44889c0f-0702-4d76-bb21-9ff45f8f755f",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "d53232a2-a790-4bc4-8191-8d73fc9fa94e",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "FD1 - Conociendo tu camara, que es nuestro primer modulo. ",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T15:49:11.393Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "7f21e2ed-bbc4-46ab-b9f3-988aa1b60b3e",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000007",
+      "pregunta_id": "25038647-4b5e-4dc3-8f37-361028571789",
+      "valor": {
+        "esTest": false,
+        "deviceId": "mg9zrbo2fvp",
+        "sesionId": "srio5ewsdd",
+        "respuesta": "rentabilidad ,actividad o eficiencia ",
+        "fingerprint": "ed8b8bac"
+      },
+      "creado_en": "2026-07-08T21:37:18.440Z",
+      "actualizado_en": "2026-07-08T22:39:28.894Z"
+    },
+    {
+      "id": "75c96ade-dc06-44a8-8fbd-c66fd395dbe6",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000007",
+      "pregunta_id": "280be4fb-7ce1-44c4-890a-7d242d5324c0",
+      "valor": {
+        "esTest": false,
+        "deviceId": "mg9zrbo2fvp",
+        "sesionId": "srio5ewsdd",
+        "respuesta": "Genera mas tiempo el ingreso de facturas a sistema contasis para que el asesor externo pueda generar la declaracion ",
+        "fingerprint": "ed8b8bac"
+      },
+      "creado_en": "2026-07-08T21:43:06.734Z",
+      "actualizado_en": "2026-07-08T22:39:28.894Z"
+    },
+    {
+      "id": "dc246619-3ad5-4661-8af7-63d68e0524f0",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000004",
+      "pregunta_id": "1637dafa-7ddd-45cb-afcb-58600491e95a",
+      "valor": {
+        "esTest": false,
+        "deviceId": "u05jrx2zvh",
+        "sesionId": "aqtglkpzjn",
+        "respuesta": "La logística que se necesita para alistar equipos en los diversos eventos que se realizan.\n\nla entrega de productos finales a los clientes ya que tendrían un listado de a quien entregar y que entregar.",
+        "fingerprint": "922d1dfe"
+      },
+      "creado_en": "2026-07-09T15:15:59.224Z",
+      "actualizado_en": "2026-07-09T16:31:16.559Z"
+    },
+    {
+      "id": "849b6d86-5ac4-4493-a38e-712e44eea569",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "6f255338-2e8b-4dd9-883f-8a6155973424",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "En todo el proceso del mes el proyectado puede ir variando en base a:  Retiros de alumnos.\nSi se generan adelanto de pagos.\nSi algun alumno se retrasa en su pago. \nSi se agrega algun workshop o curso. \n\n\n",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T15:50:40.862Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "e8d3afec-e00f-4461-992d-59fc05056159",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "34b63c30-6e25-4e04-8846-581d6bb8abac",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "Para crear contenido se debería asignar un celular a cada una con WhatsApp con buen almacenamiento, el celular personal ya está muy copado, audífonos también para poder editar mejor y si es posible poder editar cada una con un iPad cuando no haya eventos porque ahí se visualiza mejor la imagen para editar.",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:12:44.345Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "20343777-3a87-45f5-9c75-c7e64d37b56c",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000005",
+      "pregunta_id": "1d159bb1-792b-4ab3-b5c5-77703efa6fcd",
+      "valor": {
+        "esTest": false,
+        "deviceId": "xvyxdqz5ked",
+        "sesionId": "ns5ahsj2ahj",
+        "respuesta": "Depende si estamos en una FERIA NUPCIAL presencial intervengo en todo el proceso de venta. \n\ny Si el contacto es virtual,  sería en coordinación, seguimiento, contrato y cobranza.\n\nEn resumen, conozco y a veces participo en todo el proceso.",
+        "fingerprint": "6afbc1ac"
+      },
+      "creado_en": "2026-07-08T17:58:36.558Z",
+      "actualizado_en": "2026-07-09T15:31:21.487Z"
+    },
+    {
+      "id": "3943fa13-0c32-49e4-9a7e-1503efa80e8e",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "a4a6ee0e-8d25-4247-810b-f2fdd1526ab3",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "El iPhone 13 es el que más se utiliza para grabar y editar pero no tiene mucho espacio y ya no tiene WhatsApp, lo que dificulta poder pasarnos los archivos o fotos, el iPhone 11 tiene WhatsApp pero está teniendo problemas con su cámara porque la imagen se ve temblorosa y tampoco cuenta con espacio, los micrófonos para grabar también se pueden utilizar sin problema.",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:26:15.482Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "39daa7c9-89af-4d6a-81f3-fa2faa23f257",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000007",
+      "pregunta_id": "c4763e32-29d3-4a07-8476-fbb46b416fd1",
+      "valor": {
+        "esTest": false,
+        "deviceId": "mg9zrbo2fvp",
+        "sesionId": "srio5ewsdd",
+        "respuesta": "si , tenemos toda la informacion , solo es cuestion de distribuir , tomara 4 o 5 horas aprox.",
+        "fingerprint": "ed8b8bac"
+      },
+      "creado_en": "2026-07-08T21:48:16.266Z",
+      "actualizado_en": "2026-07-08T22:39:28.894Z"
+    },
+    {
+      "id": "6a9e92ce-36b5-4112-88bd-9f9de2d0c696",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000005",
+      "pregunta_id": "91f2352c-0816-4d85-b9c2-8f14fd672ca9",
+      "valor": {
+        "esTest": false,
+        "deviceId": "xvyxdqz5ked",
+        "sesionId": "ns5ahsj2ahj",
+        "respuesta": "A nivel interno dentro de Runafoto, sugeriría que se debería mejorar el clima laboral haber empatía, valorar el trabajo de todos, y respetar a cada colaborador, me preocupa que haya mucha rotación en Runafoto desde que estoy ya más de un año he visto pasar y entrar a más de 12 colaboradores, algunos duran una semana, un mes y se van, también vi partir antiguos, allí hay un tema a evaluar, a nivel de realizadores no hay mucha estabilidad hay ligera rotación de personal y alguno que he escuchado de la propia boda de excolaboradores es que sienten que muchas veces no valoran a la gente y que tienen que rogar para sus compensaciones o sea me han dicho literal que piden apoyo y ellos apoyan en horas extras, en feriados, etc. Pero cuando piden compensar no les dan la facilidad. Ese sería mi feedback. Gracias.",
+        "fingerprint": "6afbc1ac"
+      },
+      "creado_en": "2026-07-08T18:20:22.276Z",
+      "actualizado_en": "2026-07-09T15:31:21.487Z"
+    },
+    {
+      "id": "74ba9d8a-1093-44fc-ab0a-d66e659c2f9e",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000005",
+      "pregunta_id": "6c8c10c6-c59c-4e8a-b8c7-4151a76302f8",
+      "valor": {
+        "esTest": false,
+        "deviceId": "xvyxdqz5ked",
+        "sesionId": "ns5ahsj2ahj",
+        "respuesta": "Probablemente sea la atención presencial a los clientes que van a oficina de Trujillo a firmar contratos, no obstante, en la mayoría de casos los clientes hacen transacciones comerciales con nosotros vía llamada, whatsapp o reuniones virtuales, porque de allí las demás coordinaciones como validación de agenda, monitoreo de coberturas, atención a clientes corporativos o personas naturales la hacemos por llamada, whatsapp o virtualmente. Y en relación a los eventos presenciales en Lima, mi persona las toma, no con tanta frecuencia como las hay en Trujillo, quizá sea ello la única diferencia, porque de allí en relación a las actividades de gestión, coordinación, administrativa y comerciales son muy similares. Ya que la mayoría de estás actividades se gestionan a través de llamadas o reuniones virtuales.",
+        "fingerprint": "6afbc1ac"
+      },
+      "creado_en": "2026-07-08T17:49:29.552Z",
+      "actualizado_en": "2026-07-09T15:31:21.487Z"
+    },
+    {
+      "id": "7a5ca679-6ed0-46ae-90bb-3df9f61b3c49",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "0acf5397-93bb-4e4b-8fcc-21267a0465d0",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "Empresas \nCoworking \nAcademia Pre universitaria",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T03:55:56.829Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "5b9bfa47-cfcf-4b9f-a9f2-6ae66f193b3b",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "497b4dd5-4b9d-489c-b3a8-cf0005bc4f29",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "Primero en su disponibilidad de tiempo, capacidad de resolver problemas y el poder comunicacional. \n\nLuego, su experiencia y como ve la industria y qué propuestas innovadoras plantea para potenciar la marca.\n\nTercero, la disposición. De entender que nuestro trabajo es mañana, tarde y noche. ",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T03:56:27.748Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "a79aa1c7-3fad-4d37-853b-32a970fb015a",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000002",
+      "pregunta_id": "8721becc-b272-418e-9280-6297b3bd5794",
+      "valor": {
+        "esTest": false,
+        "deviceId": "rak1qr8d8u",
+        "sesionId": "xqms7i93ae",
+        "respuesta": "Espero que el vendedor con el\nPerfil adecuado ayude a escuela en: \n\n1) captación masiva de estudiantes para llenar aulas \n2) post venta para q entren a otros cursos \n\nConsidero q para lograrlo necesitan principalmente conocer e interiorizar en qué consiste nuestro servicio para que lo puedan trasmitir con la misma pasión que Douglas o yo. Osea full capacitación en conocer el servicio q venderá ",
+        "fingerprint": "4c8cdace"
+      },
+      "creado_en": "2026-07-09T19:35:39.270Z",
+      "actualizado_en": "2026-07-09T23:08:41.457Z"
+    },
+    {
+      "id": "3feb8dd7-9b34-4f8d-b36f-f7f9fcc72774",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000004",
+      "pregunta_id": "2e247220-29ed-4b03-90cf-449bdc25f4c3",
+      "valor": {
+        "esTest": false,
+        "deviceId": "u05jrx2zvh",
+        "sesionId": "aqtglkpzjn",
+        "respuesta": "la elaboración y seguimiento de cotizaciones; de ahí parte todo el trabajo",
+        "fingerprint": "922d1dfe"
+      },
+      "creado_en": "2026-07-09T16:23:52.074Z",
+      "actualizado_en": "2026-07-09T16:31:16.559Z"
+    },
+    {
+      "id": "811c89e5-a418-4e2e-b076-0e1cb532c6a7",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "891a7bd9-f1cd-4a95-bc7d-5f8500200aa1",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "El monto de deuda para generar cobros\nEl  registro de nuevos ingresantes con sus datos de ingreso\nEl cronograma de pago de cada grupo\n",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T16:01:37.517Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "38ec9144-1c84-4732-bfce-eb5dc4614404",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "34b63c30-6e25-4e04-8846-581d6bb8abac",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "Un celular con WhatsApp activo, con buena cámara y buen almacenamiento y audífonos. ",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:12:40.910Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "f29b4085-d8ac-42a4-ac01-e0edf4352b6c",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "cf6fac3e-fe32-45af-a666-d094fd4850a4",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "Todos los días",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:03:41.661Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "ee657513-aef0-4a45-ba49-473bd7f0b4b4",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "08273bdd-f0e7-4d18-a146-c3e5d600f5d1",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "Empresas. Dejaría que crezca sola. Es un solo esfuerzo ingresar ala lista de proveedores y tenemos trabajo. Supervisaría los colegios, porque es un público más complicado, aveces exigente, donde los problemas fluyen pero hay capacidad de resolverlos.",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T03:58:45.197Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "47fd4a44-81e9-4ce7-885e-339a7958f692",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "cf6fac3e-fe32-45af-a666-d094fd4850a4",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "Varias veces por semana",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:05:22.070Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "123aa1e7-6a94-46e3-a891-88448c9a1a56",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "43e5d9d0-9577-4faa-8c1b-46b720a130d7",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "toda la informacion basica del modulo 1: conociendo tu camara.\ny las actualizaciones de flyers de los grupos que se van aperturando. ",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T16:10:39.856Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "bb2e6b87-fdc0-45ab-a78e-8077dd4d2c8b",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000005",
+      "pregunta_id": "f1a59588-b2e8-4b13-87bb-9c3b3f751399",
+      "valor": {
+        "esTest": false,
+        "deviceId": "xvyxdqz5ked",
+        "sesionId": "ns5ahsj2ahj",
+        "respuesta": "Lo natural es satisfacer la necesidad de los novios en poder ayudarles a tener una gran recuerdo en el día de su boda tanto en foto y video. Lo forzado que he observado y experimentado por el feedback de los propios clientes es que de manera indirecta Douglas a veces les ofrecer en que él será el fotógrafo de la boda a veces muchas novias o novios piensan que él será su fotógrafo, lo digo porque varios novios me han dicho eso en la fase de postventa. Y eso como siento que por cerrar forzamos que él será el fotógrafo. Y muchas veces enviamos a los demás colaboradores a realizar las coberturas, quizá ello como observación. ",
+        "fingerprint": "6afbc1ac"
+      },
+      "creado_en": "2026-07-08T18:02:07.806Z",
+      "actualizado_en": "2026-07-09T15:31:21.487Z"
+    },
+    {
+      "id": "82e6e064-8e4b-416f-8aa0-80da657b344c",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000001",
+      "pregunta_id": "4f84d799-95aa-4415-94bc-430b84149941",
+      "valor": {
+        "esTest": false,
+        "deviceId": "n7ux0t29oyr",
+        "sesionId": "62me03bj76t",
+        "respuesta": "Que hagan toda la estructura de fisiólogo, envíen información visual y audiovisual y luego sean más creativos, ágiles y consecuentes. Vender no es copiar y pegar, vender es mostrar la experiencia y como estás sumergida en ella. Par que corra todo, tendrían que tener esa capacidad de saber que son brazos comerciales y tenemos un objetivo común: sostenibilidad y dejar claro esta, un legado de siempre ser los mejores. ",
+        "fingerprint": "6471c53"
+      },
+      "creado_en": "2026-07-09T04:00:07.336Z",
+      "actualizado_en": "2026-07-09T04:04:54.195Z"
+    },
+    {
+      "id": "6cfd11fd-ae1a-4f40-8cd3-d468ddcdf4ca",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000002",
+      "pregunta_id": "15934cbc-3a6b-494c-95ef-2592c705399e",
+      "valor": {
+        "esTest": false,
+        "deviceId": "rak1qr8d8u",
+        "sesionId": "xqms7i93ae",
+        "respuesta": "Escuela tiene varias áreas. \n\nAdministrativo: \n- de los grupos nuevos: \n1) el llenado de autorizaciones de imagen y hoja de permiso de salidas y ficha médica \n2) cuantas inasistencias  hubieron en la semana anterior y porque no vinieron \n3) reporte de cuántos grupos están abiertos y cuantos grupos y de qué módulos están por abrir \n\nVentas:\n1)  cuántos nuevos estudiantes están inscritos en cada grupo nuevo por abrir \n\nContable: \n1) reporte de deudores de estudiantes activos porque no pagaron o cuando se ponen al día \n2) ingresos mensuales y proyección \n\nPedagógico: \n1) si los profesores cumplieron con sus clases y actividades según su programación \n2) si los profesores mandaron su Back que se solicita en sus clases prácticas \n3 ) si los Profesores mandaron las mejores fotos logradas en las clases por los alumnos. Para que se sea subido a redes. \n",
+        "fingerprint": "4c8cdace"
+      },
+      "creado_en": "2026-07-09T19:22:41.373Z",
+      "actualizado_en": "2026-07-09T23:08:41.457Z"
+    },
+    {
+      "id": "b4d708e4-0ed8-4f30-9d60-7c2a2ee7397d",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000004",
+      "pregunta_id": "c3df03f2-c330-4f2e-bef3-bd3705c3d521",
+      "valor": {
+        "esTest": false,
+        "deviceId": "u05jrx2zvh",
+        "sesionId": "aqtglkpzjn",
+        "respuesta": "Con los clientes: en la entrega a destiempo de sus productos.\nEn la agenda cuando se agrega un evento de momento, genera inconvenientes.\nEn la coordinación interna, cuando no se proporciona toda la información necesaria para cada evento, o no es correcta.\nCon el equipo mayormente es por temas de puntualidad para llegar a los eventos.",
+        "fingerprint": "922d1dfe"
+      },
+      "creado_en": "2026-07-09T16:25:46.844Z",
+      "actualizado_en": "2026-07-09T16:31:16.559Z"
+    },
+    {
+      "id": "3bfb6f89-554f-4087-a041-c135fdcaa5db",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "8146a170-1fc7-44b4-9ce4-6388c84fa55d",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "Tendria erros al dar la informacion sobre el costos, fechas o beneficios. ",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T16:12:19.396Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "70eec1bd-1af5-4b62-a328-a32ff3b44868",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "5b91dc32-76e1-4dfb-a376-22b378f0fb61",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "Rara vez",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:05:53.142Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "2feca08f-3b79-4c06-b83f-2ba20b79607c",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "4f084299-e59e-4666-9bd0-4f213537c693",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "Todos los días",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:06:01.116Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "60bf160b-205d-49bf-af6d-ae85a76932e4",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000002",
+      "pregunta_id": "8801d64d-f196-46f8-9802-53ecf9bb8d28",
+      "valor": {
+        "esTest": false,
+        "deviceId": "rak1qr8d8u",
+        "sesionId": "xqms7i93ae",
+        "respuesta": "1. Logística : la considero mayor impacto no porque sea de vida o muerte sin embargo al año tenemos mucha pérdida económica por extravíos, pérdidas olvidos más uso de equipos etc. se debe a 1) cultura de orden más interiorizada en los colaboradores 2) seguimiento de los equipos permanentemente 3) mantenimientos de lo que se va dañando 4) limpieza y acomodo de todo lo que se usa en todas las áreas de productora/ \n\nActualmente hago esta función  cuando llego y antes de irme solo que me toma muchísimo tiempo hacer el seguimiento de donde están las cosas  y verificar lo que falta  no me da el tiempo de limpieza ni de ver a detalle lo que no sirve. Lo hago a medias. \n\nY creo que es la más fácil de delegar. Que las otras funciones que hago. \n\n\n2. La otra función que hago de alto impacto son los pagos a proveedores planilla etc. Elmproblema de esto es que no veo que pueda automatizarse los pagos orque los egresos son muy variables y deben ser fiscalizados por alguien ya que no son montos exactos por ejemplo en viaticos, o proveedores. Planilla también por que durante el mes varios se acerca a pedir adelantos o préstamos pequeños y a fin de mes se debe recalcular y lo cruzo con contabilidad ellos ya me dan un Excel con los montos exacto y eso es más fácil y rápido/ pagar. \n\n",
+        "fingerprint": "4c8cdace"
+      },
+      "creado_en": "2026-07-09T15:29:55.453Z",
+      "actualizado_en": "2026-07-09T23:08:41.457Z"
+    },
+    {
+      "id": "80740dc4-f2d1-424c-ab73-9c727a37ee23",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000002",
+      "pregunta_id": "6a95cc1d-e994-43be-acc8-9c27f73b0a33",
+      "valor": {
+        "esTest": false,
+        "deviceId": "rak1qr8d8u",
+        "sesionId": "xqms7i93ae",
+        "respuesta": "Tengo documentado: \n\n1. Inventario actualizado con las cosas que hay en existencia y los objetos están codificados ( la mayoría y más importantes) \n2. Un manual de funciones. Donde explica las   Funciones diarias principales En oficina y funciones en campo: ( cuando hay eventos) ",
+        "fingerprint": "4c8cdace"
+      },
+      "creado_en": "2026-07-09T19:20:47.970Z",
+      "actualizado_en": "2026-07-09T23:08:41.457Z"
+    },
+    {
+      "id": "ae644c3f-9e93-4346-a5de-b564bb488c4c",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000002",
+      "pregunta_id": "68ab6b12-6dde-4ee8-b4e1-ffc988773ade",
+      "valor": {
+        "esTest": false,
+        "deviceId": "rak1qr8d8u",
+        "sesionId": "xqms7i93ae",
+        "respuesta": "En algún momento se habló de estandarizar los viaticos. Desayunos 5 soles para almuerzos y cenas 10 cada uno: sin embargo caemos en el problema que es subjetivo el pago y se debe tomar decisiones puesto que no es lo mismo conseguir un almuerzo en Trujillo que en el valle en piura o Lima y también hay variables porque puedes estar en Lima pero en ciudad o en playa o en pueblo lo mismo pasa con Lima el costo pedir variar si se encontraran frente a lampista, en Lima centro frente a la agencia o si se los llevan a chismoso a etc .. incluso es muy variable encontrar un almuerzo con losmprwcios estandarizar según la hora en la que se vayan a comer. Sucede que aveces pierden el tiempo y en lugar de ir a comer a su hora lo hacen en horas  más altasnynpormñogica solo encuentras comida a la carta pero para ello se fiscaliza el\nPor qué no fueron a comer en el horario adecuado para encontrar un mejor\nPrecio.  Y lo malo es que muchas veces se provoca un malestar en ellos puesto que  a pesar que desde el incidió se les dice las reglas no siempre las entiendan o las aceptan no se . ",
+        "fingerprint": "4c8cdace"
+      },
+      "creado_en": "2026-07-09T15:39:31.368Z",
+      "actualizado_en": "2026-07-09T23:08:41.457Z"
+    },
+    {
+      "id": "be9366cf-e608-40eb-a242-6de34d3408db",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "7721e5a8-8ff5-45d9-bc2c-231cd5658da8",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "Aclarando que todo es en pro de mejora personal y para la empresa:\n\n1) En cuanto a los clientes, me parece que todo lo que acuerdan al principio se debe cumplir hasta el final con el mismo trato de empatía y respeto que al inicio, no porque ya haya pasado tiempo de su contrato o evento se puede cambiar eso. Esto es muy importante para que las personas se fidelicen.\n2) No sentirnos realmente parte de la empresa, cuando ocurren cumpleaños pasaría desapercibido como cualquier día si es que no fuera por los mismos chicos que organizan un compartir. \n3) Que se descuente por todo, sin analizar que la responsabilidad puede ser mitad mitad para la empresa.\n4) Quedarnos a trabajar más del tiempo acordado (más de la 1 o cuando no tenemos break y más de las 7), las reuniones o grabaciones deben ser en la hora de trabajo.\n5) Cuando una persona se queda trabajando más de las 7pm para poder cumplir con todas sus tareas del día, se debería avisar y acordar con su jefe inmediato para que al día siguiente no se le descuente si es que llega unos minutos más tarde.\n6) Cuando nos vamos de viaje, la alimentación debe ser primordial, cumplir con todas las comidas, cuidar en los lugares donde se come o se hospeda. También cumplir con los viáticos de tu casa a la agencia y de la agencia a tu casa porque se está regresando de un viaje de trabajo.\n7) Cuando te asignan una comisión, deberían yapear un monto a las personas que están asistiendo y si es que sobra realizar la devolución rindiendo cuentas, porque a veces los chicos no cuentan con fondos para poder costear los pasajes o alimentación.\n8)En las horas extras, uno es lógico con el tiempo que pide para no estar inventando tiempos, está claro que nosotros sugerimos los días que nos pueden devolver esas horas acorde a la agenda y la aprobación del jefe, pero las horas y minutos que indicamos según lo que acabo de mencionar en la parte de arriba, se deberían cumplir tal cual y no diminuir porque por algo uno está siendo justo y juicioso con el tiempo que pide.\n9) Si vamos a una comisión de noche- madrugada se debería cumplir con el tiempo acordado y no cambiar la hora de la activación a último minuto porque una como mujer también es peligroso que se regrese sola a altas horas de la noche.\n10) Cuando nos piden editar un vídeo, eso toma su tiempo para que el resultado se vea bonito y atractivo por más que sea desde celular, es entendible y respetable que todo tiene que ser lo más pronto para poder agilizar las redes pero también se tendría que entender los procesos de cada cargo.\n11) Lo más justo es siempre turnar a las creadoras de contenido, tanto en viajes, comisiones o días libres, si le pudieron brindar un día libre un fin de semana a una y la otra persona lo pide con suma urgencia también, poder analizar la situación y agenda sin de frente mostrar negativa.\n12) Soy consciente que no se brinda grati ni cts, pero sería muy bueno si pueden analizar igual realizar un sobre cerrado a cada trabajador como consideración por su trabajo.\n13) Por último, aclarar que mis funciones de creadora de contenido y el ambiente laboral con los chicos me gusta mucho y cada día realmente me esfuerzo por hacer bien cada cosa o función que me piden, pero para que sus trabajadores se sientan mucho más a gusto con su lugar de trabajo, con todo el respeto, el trato y empatía empieza desde las cabezas.\n",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:36:54.088Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "db6a9866-a61e-4331-9d73-023bdaa82578",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "5b91dc32-76e1-4dfb-a376-22b378f0fb61",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "Rara vez",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:05:46.266Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "591f307e-93e9-44ef-9f6a-9ecd68d64210",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "0161611e-db35-41e4-ad68-5cfd426d65e0",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "Que enseñamos dentro del curso, cuales son los beneficios al ser parte de la escuela Runafoto, costos del curso y fechas de inicio de grupos. ",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T16:15:35.801Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "e710a411-f1f8-4f13-a26b-161157ce04a3",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "7721e5a8-8ff5-45d9-bc2c-231cd5658da8",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "Reclamo: No me parece justo el tema de la \"compensación de horas\". Ya que sí se trabaja horas extras, lo correcto es que se le pague con dinero o caso contrario con horas, que lo hacen, pero siempre las compensaciones son teniendo en cuenta los intereses de la agenda y agencia, más no teniendo en cuenta cualquier urgencia de algún colaborador, ya sea por temas de salud, tema familiar, etc. Eso no me parece teniendo en cuenta que en TODA EMPRESA EL PERSONAL HUMANO, SIEMPRE ES PRIMORDIAL. \nPor otro lado, la presión de estar preguntando a cada momento lo que vamos a hacer o decirnos lo tenemos que hacer es un poco agobiante, muchas veces si es necesario porque hay cosas nuevas, pero no siempre. Así mismo, el control de cada colaborador como por ejemplo estar vigilando cada cuando se va a los servicios, eso sí me parece muy controlador y estresante. Considero que en lugar de ayudar, desgasta de alguna manera la actitud del colaborador. \nEn cuanto a los clientes, he llegado a notar que los reclamos son siempre los mismos en el tema de Anuarios por las fotos o nombres y eso da a entender que la culpa es de la empresa MAS NO DEL CLIENTE, o muy pocas veces es así, por lo que lo ideal sería HACERSE RESPONSABLE Y EFECTUAR EL CAMBIO, más no culpar e intentar limpiarse las manos. \nCon la agenda: Considero que siempre se debe consultar el tema de las comisiones y muchas veces no lo hacen y eso está mal porque muchas veces un colaborador tiene un día libre o de descanso o compensación de horas y se entera que está en agenda y tiene que cumplir sí o sí. Cuando lo correcto es consultar la disponibilidad para tal fecha o evento, ya que siempre los eventos terminan tarde. \nCon la organización interna, todavía no he llegado a comprender en su totalidad la funcionalidad de miembros, porque casi siempre las funciones cambian y los roles igual. Así mismo, he visto que NO SE RESPETAN LOS HORARIOS DE LOS COLABORADORES, se entiende que los archivos son urgentes pero se debe pasar por encima  de los derechos de los colaboradores. Por otro lado, he notado que a muchos de los colaboradores NUEVOS, no se los capacita para poder hacer trabajos por sí solos, y ahí está el error porque se hacen los trabajos mal y luego el cliente reclama. También he notado que no se le da importancia a los colaboradores en el sentido que solo se le ve como una herramienta más no un COLABORADOR como tal, y no debería ser así, por ejemplo, en el tema de los cumpleaños, ni un saludo en persona ni en grupo y lo quieran o no, ese reconocimiento hace que la organización interna mejore o que los colaboradores se involucren más.",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:20:03.380Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "a6c22c84-c02c-4c18-890c-7835f45ba6bc",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "2f832b6c-8b98-428c-ba9b-a0beb6a26285",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "2",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:06:44.509Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "c9f6ed3c-bf66-4414-83ab-73d9e8525a71",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "d8527e9d-2cf3-488e-be0e-e29ad8859a66",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "Editar, grabar repetidas veces lo mismo por órdenes superiores. ",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:07:20.860Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "a90ee593-2137-4041-a682-a42cb9276ec3",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000003",
+      "pregunta_id": "add9edd8-8890-48fe-92aa-3c20b7b7abae",
+      "valor": {
+        "esTest": false,
+        "deviceId": "7wm29mpg7nm",
+        "sesionId": "84wetxupq9",
+        "respuesta": "Creo que un fallo es el tema del transpaso de los numeros que ingresan ya que en la segunta respuesta el 50% ya no vuelve a responder. \nLa diferencia entre infraestructura y entrega entre la ciudad de trujillo y piura",
+        "fingerprint": "a75fefd7"
+      },
+      "creado_en": "2026-07-09T16:18:27.052Z",
+      "actualizado_en": "2026-07-09T16:22:32.312Z"
+    },
+    {
+      "id": "7089bd03-e349-4a43-88e3-47528959b810",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000002",
+      "pregunta_id": "8ad5bae6-c367-4413-a6a2-5c7be0027edc",
+      "valor": {
+        "esTest": false,
+        "deviceId": "rak1qr8d8u",
+        "sesionId": "xqms7i93ae",
+        "respuesta": "En el drive: buscas como inventario . Cada nuevo equipo ahí lo registró ",
+        "fingerprint": "4c8cdace"
+      },
+      "creado_en": "2026-07-09T19:42:27.488Z",
+      "actualizado_en": "2026-07-09T23:08:41.457Z"
+    },
+    {
+      "id": "f74cc280-b11d-423b-9936-0b4964fd0ca0",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "2f832b6c-8b98-428c-ba9b-a0beb6a26285",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "Dos ",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:06:57.373Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "f846d2b3-8077-494d-b0ce-0f5603a3b17d",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "d8527e9d-2cf3-488e-be0e-e29ad8859a66",
+      "valor": {
+        "esTest": false,
+        "deviceId": "ccram7nkrbw",
+        "sesionId": "jxxpguovh2e",
+        "respuesta": "Editar, grabar varias veces material que ya se ha hecho, no terminar todo lo pendiente por realizar nuevas grabaciones.",
+        "fingerprint": "27ea4b90"
+      },
+      "creado_en": "2026-07-09T15:07:13.499Z",
+      "actualizado_en": "2026-07-09T16:49:42.036Z"
+    },
+    {
+      "id": "3cc7f775-930e-4403-8793-60e3ca1d78b9",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000006",
+      "pregunta_id": "13ccef88-63f2-43ce-abf0-09bed40678fe",
+      "valor": {
+        "esTest": false,
+        "deviceId": "edbd5udh1s6",
+        "sesionId": "ddhwzkywf64",
+        "respuesta": "Se usan, plantillas para coberturas de colegios (RECAP SESIONES COLEGIOS) o para fotos sueltas de escuela (BACK). ",
+        "fingerprint": "e085e45"
+      },
+      "creado_en": "2026-07-09T15:08:35.206Z",
+      "actualizado_en": "2026-07-09T15:54:13.393Z"
+    },
+    {
+      "id": "5897c278-7226-41d1-9da8-b83ae204dbf9",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000002",
+      "pregunta_id": "9cb19385-8bd4-47f6-9488-25e0c3d84ec4",
+      "valor": {
+        "esTest": false,
+        "deviceId": "rak1qr8d8u",
+        "sesionId": "xqms7i93ae",
+        "respuesta": "ACTORES:\n1)\tCOLABORADORES OPERATIVOS ( fotógrafos, video, diseñadores, etc) :\n-\tTardanzas, permisos, monitoreo registro y compensación de tiempos extras, tener al día sus contratos, renovaciones, etc (necesitamos RRHH) \n-\tPerdidas, equipos malogrados de equipo utilizado de productora. \n-\tUso indebido del material que recogen en la empresa. (derechos de imagen, regulado en hoja de compromiso al inicio de su ingreso)\n\n2)\tCLIENTES:\n-\tProblema 1: no están a gusto por la entrega del producto final ( no se les dio una explicación a detalle del contrato en un inicio, o hubieron muchos cambios modificados en el proceso que se perdió la comunicación entre coordinadores y operativos para que ejecuten según la especificación.\n-\tProblema 2: Aunque todo este bien el cliente simplemente no le gusta lo que se le entrega (Quizas fortalecer cláusulas de los contratos o mas rigidez en las coordinaciones durante el proceso)\n-\tProblema 3: Una vez  coordinados los servicios y entregables, los clientes quieren cortesías y cosas a su favor como modificaciones en rostro, etc. Sin pagar mas ( Coordinador debe tener mayor rigidez en no aceptar). \n3)\tPROVEEDORES: \n-\tA veces no entregan lo que ofrecen en tiempo o forma y algunas veces se les paga justo antes de que comience su servicio. Y no quieren devolver dinero. O el proveedor no existe y se le deposito, en el caso de atención a otras ciudades donde tercerizamos y es difícil ir a monitorear.\n4)\tPROCESOS:\na)\tReclutamiento:\n-\tLos nuevos postulantes pueden tener una falsa expectativa de lo que se va a hacer. ( en la inducción se habla mucho pero no hay cosas puntuales, habría que tener un formato escrito según puesto) \n-\tMuchos nuevos postulantes no aguantan o se retiran en menos de una semana de haber entrado.\n-\tTener claro si vamos a pagar o no las inducciones ( porque algunos quieren q se paguen las inducciones cuando solo las recibieron y en esa misma semana desertaron. (  en gerencia lo vemos como una pérdida de tiempo en vez de una inversión de tiempo que podría ser remunerada) \nb)\tCultura organizacional:\n-\tNo contamos con una misión, visión y valores de la empresa  redactada, debemos colocarla a la vista para que todos puedan tenerla presente siempre. \nc)\tVentas – Post venta:\n-\tNo hay suficiente captación de clientes nuevos en agencia y en escuela\n-\tActualmente solo Douglas sostiene las ventas y es mucho tiempo el que le lleva mas tiempo del horario laboral usa  sus  16 horas para vender. \nd)\tCoordinaciones:\n-\tJenny: es buena en administrativo y documentación sin embargo no tiene una coordinación operativa con liderazgo: genera problemas con los operativos que no quieren ir a las comisiones que se les indican, los operativos no siempre saben las actividades que tienen que ejecutar ni en tiempo ni en forma y hay problemas en la entrega al cliente final. No comunica rápidamente alguna coordinación y genera contratiempos entre cliente, proveedor, etc.\n-\tJosef:  no es tan eficiente en administrativo, pero  al ser pro activo puede dar seguimiento con mayor agilidad a los clientes y resolver problemas con clientes especiales, llegando a mejores acuerdos. Al comunicar  con mayor fluidez a gerencia cualquier problema evita que estos se hagan mas grandes.  Pero  es muy confiado asique cuando se le asigna algún proyecto como los de UTP, muchas veces deja todo a ultimo  y los proveedores le quedan mal lo que genera problemas. \ne)\tEstandarizar devolución de viáticos por comisiones.\n-\tSe producen malestares por que  muchas veces el monto por viáticos que se egresa a algún personal no son iguales a otros, pues se termina valorando muchos factores como  horarios, lugares, feriados, etc Esto genera mucha controversia con los operativos. \nd) Reportes contables de escuela: \n- En productora tenemos mas orden pero en escuela  hay mucho problema con saber la recaudación exacta, pues la persona que actualmente esta no logra dar un reporte claro, se confunde mucho con los números  de ingreso, ya que los ingresos de dinero en escuela son muy variables, según la fecha de ingreso y cierre de curso  o si hay bajas o retrasos pro los alumnos.. así que no se logra estandarizar una tabla que mida exactamente la proyección de dinero en el futuro. ( se esta pensando contratar un contador para ver ello) \n",
+        "fingerprint": "4c8cdace"
+      },
+      "creado_en": "2026-07-09T20:24:25.655Z",
+      "actualizado_en": "2026-07-09T23:08:41.457Z"
+    },
+    {
+      "id": "5d16b7d4-3dcc-4c14-a006-2dad235fb27b",
+      "asignacion_id": "a0000000-0000-0000-0000-000000000004",
+      "pregunta_id": "361f3763-b8c4-4840-8682-808ec7b1e509",
+      "valor": {
+        "esTest": false,
+        "deviceId": "u05jrx2zvh",
+        "sesionId": "aqtglkpzjn",
+        "respuesta": "el registro de cotizaciones: codificación, elaboracion y aceptacion o negativa del mismo. \n\nRegistro de proveedores a nivel nacional por ciudades y servicios\n",
+        "fingerprint": "922d1dfe"
+      },
+      "creado_en": "2026-07-09T16:19:43.990Z",
+      "actualizado_en": "2026-07-09T16:31:16.559Z"
+    }
+  ]
+}
