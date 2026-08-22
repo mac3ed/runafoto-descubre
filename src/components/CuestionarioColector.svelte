@@ -62,6 +62,7 @@
   let esOpcional = $derived(
     preguntaActual?.tipo === 'CORTA' || 
     preguntaActual?.tipo === 'CORTA_OPCIONAL' ||
+    preguntaActual?.tipo === 'FEEDBACK_FINAL' ||
     (preguntaActual?.texto ? preguntaActual.texto.toLowerCase().includes('opcional') : false)
   );
 
@@ -481,6 +482,58 @@
                 </div>
               {/if}
             </div>
+
+          {:else if preguntaActual.tipo === 'FEEDBACK_FINAL'}
+            <!-- Pantalla Final: Nombre Opcional + Sugerencia Opcional en la misma tarjeta -->
+            <div class="feedback-final-wrapper">
+              <div class="field-block">
+                <label class="field-label font-display" for="input-nombre-alumno">
+                  👤 ¿Cuál es tu nombre? <span class="label-muted">(Opcional)</span>
+                </label>
+                <input 
+                  id="input-nombre-alumno"
+                  type="text" 
+                  class="single-text-input glass" 
+                  placeholder="Escribe tu nombre y apellido (o déjalo en blanco si prefieres anónimo)..."
+                  value={typeof respuestaDada === 'object' ? (respuestaDada?.nombre || '') : ''}
+                  oninput={(e) => {
+                    const cur = (typeof respuestaDada === 'object' && respuestaDada !== null) ? respuestaDada : {};
+                    const nom = (e.target as HTMLInputElement).value;
+                    handleRespuesta({
+                      ...cur,
+                      nombre: nom,
+                      texto: `Nombre: ${nom || '(Anónimo)'} | Sugerencia: ${cur.sugerencia || '(Sin sugerencia)'}`
+                    });
+                  }}
+                />
+              </div>
+
+              <div class="field-block" style="margin-top: 20px;">
+                <label class="field-label font-display" for="input-sugerencia-alumno">
+                  💬 ¿Qué sugerencia o idea nos dejas para seguir mejorando? <span class="label-muted">(Opcional)</span>
+                </label>
+                <textarea 
+                  id="input-sugerencia-alumno"
+                  class="text-input glass" 
+                  placeholder="Escribe aquí tu mensaje, sugerencia o lo que más te emociona..."
+                  value={typeof respuestaDada === 'object' ? (respuestaDada?.sugerencia || '') : (typeof respuestaDada === 'string' ? respuestaDada : '')}
+                  oninput={(e) => {
+                    const cur = (typeof respuestaDada === 'object' && respuestaDada !== null) ? respuestaDada : {};
+                    const sug = (e.target as HTMLTextAreaElement).value;
+                    handleRespuesta({
+                      ...cur,
+                      sugerencia: sug,
+                      texto: `Nombre: ${cur.nombre || '(Anónimo)'} | Sugerencia: ${sug || '(Sin sugerencia)'}`
+                    });
+                  }}
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="optional-hint" style="margin-top: 14px;">
+                <span>💡 Ambos campos son opcionales. Puedes llenar uno, ambos o presionar directamente "Finalizar y Enviar 🚀".</span>
+              </div>
+            </div>
           {/if}
         </QuestionCard>
       {/key}
@@ -714,6 +767,50 @@
   }
 
   .text-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-focus);
+  }
+
+  .feedback-final-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .field-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .label-muted {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .single-text-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border-glass);
+    background: var(--surface-card);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .single-text-input:focus {
     border-color: var(--primary-color);
     box-shadow: var(--shadow-focus);
   }

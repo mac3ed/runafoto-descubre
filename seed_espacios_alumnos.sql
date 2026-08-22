@@ -1,6 +1,6 @@
 -- ==============================================================================
--- INAUGURACIÓN NUEVOS ESPACIOS 2026 - ENCUESTA ALUMNOS ESCUELA RUNAFOTO (v4 - 12 Preguntas)
--- Enfoque ágil, juvenil, separación limpia de Sugerencia y Nombre, y soporte multi-alumno
+-- INAUGURACIÓN NUEVOS ESPACIOS 2026 - ENCUESTA ALUMNOS ESCUELA RUNAFOTO (v5)
+-- Enfoque ágil, juvenil, cierre elegante con Nombre + Sugerencia en la tarjeta final
 -- ==============================================================================
 
 -- 1. Insertar o actualizar el Hito de Nuevos Espacios
@@ -25,12 +25,12 @@ ON CONFLICT (id) DO UPDATE SET
 
 -- 3. Insertar Cuestionario para Alumnos
 INSERT INTO cuestionario (id, hito_id, nombre, descripcion, version, metadatos) VALUES
-('c8888888-8888-8888-8888-888888888888', 'e8888888-8888-8888-8888-888888888888', '¡Queremos saber de ti y tu experiencia en los Nuevos Espacios! 📸✨', 'Cuéntanos qué te parecen las nuevas instalaciones inauguradas este 22 de Agosto de 2026, qué te gustaría practicar más y cómo podemos hacer tus clases aún más increíbles.', 6, '{"audiencia": "Alumnos de Escuela RunaFoto", "sede": "Trujillo - Av. América Oeste 801", "logoUrl": "/logo-oficial-runafoto.png"}'::jsonb)
+('c8888888-8888-8888-8888-888888888888', 'e8888888-8888-8888-8888-888888888888', '¡Queremos saber de ti y tu experiencia en los Nuevos Espacios! 📸✨', 'Cuéntanos qué te parecen las nuevas instalaciones inauguradas este 22 de Agosto de 2026, qué te gustaría practicar más y cómo podemos hacer tus clases aún más increíbles.', 7, '{"audiencia": "Alumnos de Escuela RunaFoto", "sede": "Trujillo - Av. América Oeste 801", "logoUrl": "/logo-oficial-runafoto.png"}'::jsonb)
 ON CONFLICT (id) DO UPDATE SET
   nombre = EXCLUDED.nombre,
   descripcion = EXCLUDED.descripcion,
   metadatos = EXCLUDED.metadatos,
-  version = 6;
+  version = 7;
 
 -- 4. LIMPIAR RESPUESTAS PREVIAS DE PRUEBA SOLO DE ESTA ENCUESTA (Mantiene intactas las anteriores)
 DELETE FROM respuesta WHERE asignacion_id = 'a8888888-8888-8888-8888-888888888888';
@@ -38,7 +38,7 @@ DELETE FROM respuesta WHERE asignacion_id = 'a8888888-8888-8888-8888-88888888888
 -- Limpiar preguntas previas del cuestionario de espacios
 DELETE FROM pregunta WHERE cuestionario_id = 'c8888888-8888-8888-8888-888888888888';
 
--- 5. Insertar EXACTAMENTE 12 Preguntas Esenciales
+-- 5. Insertar Preguntas (10 de selección + 1 Cierre con Nombre y Sugerencia)
 INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimension_id, version, orden) VALUES
 
 -- 1. Formación y Período (Condicional inteligente)
@@ -59,7 +59,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
     "Mes 10 – 12 (Fotocreativa, Portafolio o Comercial)",
     "Finalizado / Egresado(a)"
   ]
-}'::jsonb, 'espacios_perfil', 4, 1),
+}'::jsonb, 'espacios_perfil', 5, 1),
 
 -- 2. Satisfacción General
 ('b8000000-0000-0000-0000-000000000002', 'c8888888-8888-8888-8888-888888888888', 'ESP_02', 'En general, ¿qué tan feliz y satisfecho/a estás con tu experiencia en Escuela RunaFoto?', 'OPCION_MULTIPLE', '[
@@ -68,7 +68,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "⭐⭐⭐ Regular, está bien pero puede mejorar",
   "⭐⭐ Poco satisfecho/a, esperaba algo diferente",
   "⭐ Muy insatisfecho/a"
-]'::jsonb, 'espacios_satisfaccion', 4, 2),
+]'::jsonb, 'espacios_satisfaccion', 5, 2),
 
 -- 3. Aprender Haciendo
 ('b8000000-0000-0000-0000-000000000003', 'c8888888-8888-8888-8888-888888888888', 'ESP_03', '¿Sientes que tus clases te permiten "aprender haciendo" con práctica real?', 'OPCION_MULTIPLE', '[
@@ -76,7 +76,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "👍 La mayor parte del tiempo",
   "⚖️ A veces, me gustaría que haya aún más horas de práctica",
   "⏳ Siento que todavía predomina la teoría"
-]'::jsonb, 'espacios_satisfaccion', 4, 3),
+]'::jsonb, 'espacios_satisfaccion', 5, 3),
 
 -- 4. Recomendación
 ('b8000000-0000-0000-0000-000000000004', 'c8888888-8888-8888-8888-888888888888', 'ESP_04', '¿Qué tan probable es que le recomiendes la Escuela RunaFoto a un amigo o colega apasionado por la foto o video?', 'OPCION_MULTIPLE', '[
@@ -84,7 +84,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "✨ Muy probable",
   "🤔 Tal vez, con algunas mejoras",
   "🙅‍♂️ Poco probable"
-]'::jsonb, 'espacios_satisfaccion', 4, 4),
+]'::jsonb, 'espacios_satisfaccion', 5, 4),
 
 -- 5. Conocimiento de los 10 Espacios
 ('b8000000-0000-0000-0000-000000000005', 'c8888888-8888-8888-8888-888888888888', 'ESP_05', '¿Qué tanto conoces de los 10 nuevos Espacios inaugurados en nuestra sede de Trujillo?', 'OPCION_MULTIPLE', '[
@@ -92,7 +92,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "👀 Los he recorrido / visitado, pero aún no los uso en clase",
   "📱 Los he visto en redes sociales y publicaciones",
   "🙋‍♂️ Aún no los he recorrido ni conozco en detalle"
-]'::jsonb, 'espacios_conocimiento', 4, 5),
+]'::jsonb, 'espacios_conocimiento', 5, 5),
 
 -- 6. Espacio que más te entusiasma
 ('b8000000-0000-0000-0000-000000000006', 'c8888888-8888-8888-8888-888888888888', 'ESP_06', '¿Cuál de los nuevos ambientes te genera mayor emoción o ganas de usar en tus prácticas?', 'OPCION_MULTIPLE', '[
@@ -102,7 +102,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "💻 Aulas tecnológicas equipadas para clases y edición digital",
   "🚁 Almacén tecnológico (drones, VR, cámaras, luces y audio)",
   "💄 Área de maquillaje y producción visual"
-]'::jsonb, 'espacios_conocimiento', 4, 6),
+]'::jsonb, 'espacios_conocimiento', 5, 6),
 
 -- 7. Utilidad del Estudio de Iluminación
 ('b8000000-0000-0000-0000-000000000007', 'c8888888-8888-8888-8888-888888888888', 'ESP_07', '¿Qué tan útil consideras el acceso continuo al Estudio de Iluminación para tu crecimiento como fotógrafo/a?', 'OPCION_MULTIPLE', '[
@@ -110,7 +110,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "✨ Muy útil y necesario para dominar la luz",
   "👍 Moderadamente útil",
   "🤷 No es mi enfoque principal"
-]'::jsonb, 'espacios_utilidad', 4, 7),
+]'::jsonb, 'espacios_utilidad', 5, 7),
 
 -- 8. Actividad deseada
 ('b8000000-0000-0000-0000-000000000008', 'c8888888-8888-8888-8888-888888888888', 'ESP_08', '¿En qué tipo de actividad te gustaría aprovechar al máximo estos nuevos Espacios?', 'OPCION_MULTIPLE', '[
@@ -119,7 +119,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "🎬 Proyectos audiovisuales, rodajes y creación de contenido",
   "🧪 Workshops especializados de iluminación y dirección de personas",
   "🎨 Experimentación artística en el laboratorio B&N y museo"
-]'::jsonb, 'espacios_utilidad', 4, 8),
+]'::jsonb, 'espacios_utilidad', 5, 8),
 
 -- 9. Equipos y Acompañamiento
 ('b8000000-0000-0000-0000-000000000009', 'c8888888-8888-8888-8888-888888888888', 'ESP_09', '¿Cómo sientes la disponibilidad de equipos y el acompañamiento docente para tus prácticas?', 'OPCION_MULTIPLE', '[
@@ -127,7 +127,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "✅ Muy buena, cumple con lo que necesito",
   "⚠️ Regular: a veces faltan equipos o apoyo en horas punta",
   "🔧 Me gustaría mayor variedad de modificadores y acompañamiento técnico"
-]'::jsonb, 'espacios_recursos', 4, 9),
+]'::jsonb, 'espacios_recursos', 5, 9),
 
 -- 10. Mejora Inmediata
 ('b8000000-0000-0000-0000-000000000010', 'c8888888-8888-8888-8888-888888888888', 'ESP_10', 'Si pudieras elegir una mejora inmediata en los nuevos espacios, ¿cuál te gustaría ver primero?', 'OPCION_MULTIPLE', '[
@@ -136,13 +136,10 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "📸 Mayor variedad de modificadores, fondos y ópticas",
   "📱 Protocolo rápido y simple de reserva por WhatsApp o web",
   "🌟 Salidas y prácticas de producción con clientes reales"
-]'::jsonb, 'espacios_mejoras', 4, 10),
+]'::jsonb, 'espacios_mejoras', 5, 10),
 
--- 11. Sugerencia o Idea (Opcional - No bloquea)
-('b8000000-0000-0000-0000-000000000011', 'c8888888-8888-8888-8888-888888888888', 'ESP_11', '¿Qué sugerencia o idea nos dejas para seguir mejorando tus espacios y clases? (Opcional)', 'CORTA', '[]'::jsonb, 'espacios_mejoras', 4, 11),
-
--- 12. Nombre del Alumno (Opcional - No bloquea)
-('b8000000-0000-0000-0000-000000000012', 'c8888888-8888-8888-8888-888888888888', 'ESP_12', '¿Cuál es tu nombre? (Opcional — déjalo en blanco si prefieres responder de forma anónima)', 'CORTA', '[]'::jsonb, 'espacios_perfil', 4, 12);
+-- 11. Tarjeta Final: Nombre (Opcional) + Sugerencia o Idea (Opcional) en la misma pantalla
+('b8000000-0000-0000-0000-000000000011', 'c8888888-8888-8888-8888-888888888888', 'ESP_11', 'Comentarios Finales y Tu Nombre (Opcional)', 'FEEDBACK_FINAL', '[]'::jsonb, 'espacios_mejoras', 5, 11);
 
 -- 6. Insertar o reiniciar Asignación Grupal en estado limpio (Capacidad 5000 respuestas)
 INSERT INTO asignacion (id, cuestionario_id, token, tipo_sujeto, identificador_sujeto, muestra_esperada, estado, completado_en, guardado_parcial) VALUES
