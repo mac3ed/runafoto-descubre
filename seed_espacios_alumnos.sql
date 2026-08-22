@@ -57,7 +57,6 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
     "Mes 4 – 6 (Composición Visual)",
     "Mes 7 – 9 (Iluminación Artificial / Estudio)",
     "Mes 10 – 12 (Fotocreativa, Portafolio o Comercial)",
-    "Asistí a un workshop o taller puntual",
     "Finalizado / Egresado(a)"
   ]
 }'::jsonb, 'espacios_perfil', 3, 1),

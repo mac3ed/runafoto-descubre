@@ -65,6 +65,11 @@
     (preguntaActual?.texto ? preguntaActual.texto.toLowerCase().includes('opcional') : false)
   );
 
+  const esProgramaIntegral = (formacion?: string) => {
+    if (!formacion) return false;
+    return formacion.toLowerCase().includes('integral');
+  };
+
   // Verificación de habilitación del botón Siguiente
   let nextDisabled = $derived.by(() => {
     if (!preguntaActual) return true;
@@ -72,7 +77,11 @@
 
     if (preguntaActual.tipo === 'FORMACION_PERIODO') {
       if (!respuestaDada || typeof respuestaDada !== 'object') return true;
-      return !respuestaDada.formacion || !respuestaDada.periodo;
+      if (!respuestaDada.formacion) return true;
+      if (esProgramaIntegral(respuestaDada.formacion)) {
+        return !respuestaDada.periodo;
+      }
+      return false; // Otros cursos/talleres avanzan inmediatamente sin pedir meses
     }
 
     return respuestaDada === undefined || respuestaDada === null || respuestaDada === '';
@@ -364,7 +373,7 @@
           dimensionName={formatDimensionName(preguntaActual.dimensionId)}
         >
           {#if preguntaActual.tipo === 'FORMACION_PERIODO'}
-            <!-- Selector Visual y Dependiente de Formación y Período -->
+            <!-- Selector Condicional e Inteligente de Formación y Período -->
             <div class="formacion-periodo-wrapper">
               <div class="sub-step-block">
                 <p class="step-title font-display">1️⃣ Selecciona tu formación o curso:</p>
@@ -375,11 +384,17 @@
                       class="custom-pill-btn glass" 
                       class:selected={(typeof respuestaDada === 'object' ? respuestaDada?.formacion : '') === form}
                       onclick={() => {
+                        const esInt = esProgramaIntegral(form);
                         const cur = (typeof respuestaDada === 'object' && respuestaDada !== null) ? respuestaDada : {};
+                        const nuevoPeriodo = esInt ? cur.periodo : null;
+                        const nuevoTexto = esInt 
+                          ? (nuevoPeriodo ? `${form} — ${nuevoPeriodo}` : form)
+                          : form;
+
                         handleRespuesta({ 
-                          ...cur, 
                           formacion: form, 
-                          texto: `${form} — ${cur.periodo || '(período pendiente)'}` 
+                          periodo: nuevoPeriodo, 
+                          texto: nuevoTexto 
                         });
                       }}
                     >
@@ -390,29 +405,31 @@
                 </div>
               </div>
 
-              <div class="sub-step-block" style="margin-top: 24px;">
-                <p class="step-title font-display">2️⃣ Selecciona tu período o avance actual:</p>
-                <div class="options-vertical">
-                  {#each (preguntaActual.opciones?.periodos || []) as per}
-                    <button 
-                      type="button" 
-                      class="custom-pill-btn glass" 
-                      class:selected={(typeof respuestaDada === 'object' ? respuestaDada?.periodo : '') === per}
-                      onclick={() => {
-                        const cur = (typeof respuestaDada === 'object' && respuestaDada !== null) ? respuestaDada : {};
-                        handleRespuesta({ 
-                          ...cur, 
-                          periodo: per, 
-                          texto: `${cur.formacion || '(formación pendiente)'} — ${per}` 
-                        });
-                      }}
-                    >
-                      <span class="radio-circle"></span>
-                      <span class="pill-text">{per}</span>
-                    </button>
-                  {/each}
+              {#if esProgramaIntegral(typeof respuestaDada === 'object' ? respuestaDada?.formacion : '')}
+                <div class="sub-step-block" style="margin-top: 24px;">
+                  <p class="step-title font-display">2️⃣ ¿En qué módulo o período del Programa Integral te encuentras?</p>
+                  <div class="options-vertical">
+                    {#each (preguntaActual.opciones?.periodos || []) as per}
+                      <button 
+                        type="button" 
+                        class="custom-pill-btn glass" 
+                        class:selected={(typeof respuestaDada === 'object' ? respuestaDada?.periodo : '') === per}
+                        onclick={() => {
+                          const cur = (typeof respuestaDada === 'object' && respuestaDada !== null) ? respuestaDada : {};
+                          handleRespuesta({ 
+                            formacion: cur.formacion || 'Programa Integral de Fotografía (1 año)', 
+                            periodo: per, 
+                            texto: `${cur.formacion || 'Programa Integral de Fotografía (1 año)'} — ${per}` 
+                          });
+                        }}
+                      >
+                        <span class="radio-circle"></span>
+                        <span class="pill-text">{per}</span>
+                      </button>
+                    {/each}
+                  </div>
                 </div>
-              </div>
+              {/if}
             </div>
 
           {:else if preguntaActual.tipo === 'BOOLEAN'}
