@@ -638,13 +638,13 @@ try {
     // Calcular participación hito por hito para la tabla del Dashboard Global
     hitosConMetricas = await Promise.all(hitos.map(async (h) => {
       const asigns = await sql`
-        SELECT a.id, a.completado_en 
+        SELECT a.id, a.completado_en, a.estado 
         FROM asignacion a
         JOIN cuestionario c ON a.cuestionario_id = c.id
-        WHERE c.hito_id = ${h.id} AND a.estado = 'LANZADO'
+        WHERE c.hito_id = ${h.id} AND (a.estado = 'LANZADO' OR a.estado = 'COMPLETADO')
       `;
       const total = asigns.length;
-      const completed = asigns.filter(a => a.completado_en).length;
+      const completed = asigns.filter(a => a.completado_en !== null || a.estado === 'COMPLETADO').length;
       const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
       return {
         id: h.id,
