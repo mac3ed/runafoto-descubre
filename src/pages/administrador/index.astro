@@ -440,6 +440,23 @@ try {
     : [];
     
   // 8. Agrupaciones para la sección de Trazabilidad
+  const formatRespuestaValue = (valor: any): string => {
+    if (!valor) return '';
+    const ans = valor.respuesta !== undefined ? valor.respuesta : valor;
+    if (Array.isArray(ans)) return ans.join(' > ');
+    if (typeof ans === 'object' && ans !== null) {
+      if (ans.texto) return ans.texto;
+      if (ans.nombre || ans.sugerencia) {
+        const parts = [];
+        if (ans.nombre) parts.push(`👤 ${ans.nombre}`);
+        if (ans.sugerencia) parts.push(`💬 ${ans.sugerencia}`);
+        return parts.join(' — ');
+      }
+      return JSON.stringify(ans);
+    }
+    return String(ans);
+  };
+
   respuestasPorRol = {};
   respuestasRaw.forEach(r => {
     const key = `${r.cuestionario_nombre} - ${r.identificador_sujeto}`;
@@ -1672,14 +1689,8 @@ const getDimensionName = (dimId: string) => {
                           </div>
                           <p class="ans-question">{r.pregunta_texto}</p>
                           <div class="ans-value-box">
-                            <span class="box-label">Respuesta del Colaborador:</span>
-                            <p class="box-val">
-                              {
-                                Array.isArray(r.valor?.respuesta)
-                                  ? r.valor.respuesta.join(' > ')
-                                  : String(r.valor?.respuesta ?? '')
-                              }
-                            </p>
+                            <span class="box-label">Respuesta Registrada:</span>
+                            <p class="box-val">{formatRespuestaValue(r.valor)}</p>
                           </div>
                           <div class="ans-footer">
                             <span>Dimensión: {getDimensionName(r.dimension_id)}</span>
@@ -1712,7 +1723,7 @@ const getDimensionName = (dimId: string) => {
                                      <span class="ans-code font-display">{r.pregunta_codigo}</span>
                                      <span class="ans-role" style="color: var(--text-muted); font-size: 11px;">Dimensión: {getDimensionName(r.dimension_id)}</span>
                                    </div>
-                                   <form method="POST" style="margin: 0; display: inline-flex;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta respuesta? Esto reabrirá la pregunta para el colaborador si reabres su cuestionario.');">
+                                   <form method="POST" style="margin: 0; display: inline-flex;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta respuesta? Esto reabrirá la pregunta para el participante si reabres su cuestionario.');">
                                      <input type="hidden" name="action" value="delete_response" />
                                      <input type="hidden" name="id" value={r.id} />
                                      <button type="submit" class="delete-response-btn" title="Eliminar Respuesta" style="background: none; border: none; padding: 4px; cursor: pointer; color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; transition: all 0.15s;">
@@ -1722,14 +1733,8 @@ const getDimensionName = (dimId: string) => {
                                 </div>
                                 <p class="ans-question">{r.pregunta_texto}</p>
                                 <div class="ans-value-box">
-                                  <span class="box-label">Respuesta del Colaborador:</span>
-                                  <p class="box-val">
-                                    {
-                                      Array.isArray(r.valor?.respuesta)
-                                        ? r.valor.respuesta.join(' > ')
-                                        : String(r.valor?.respuesta ?? '')
-                                    }
-                                  </p>
+                                  <span class="box-label">Respuesta Registrada:</span>
+                                  <p class="box-val">{formatRespuestaValue(r.valor)}</p>
                                 </div>
                                 <div class="ans-footer">
                                   <span>Sesión: {r.valor?.sesionId?.substring(0, 8) || 'N/A'}</span>
@@ -1763,7 +1768,7 @@ const getDimensionName = (dimId: string) => {
                             </div>
                             
                             {respuestasDim.length === 0 ? (
-                              <p style="font-size: 12.5px; color: var(--text-muted); font-style: italic; margin: 8px 0 0 0;">Ningún colaborador ha respondido preguntas asociadas a esta dimensión aún.</p>
+                              <p style="font-size: 12.5px; color: var(--text-muted); font-style: italic; margin: 8px 0 0 0;">Ningún participante ha respondido preguntas asociadas a esta dimensión aún.</p>
                             ) : (
                               <div class="answers-grid">
                                 {respuestasDim.map(r => (
@@ -1773,7 +1778,7 @@ const getDimensionName = (dimId: string) => {
                                         <span class="ans-code font-display">{r.pregunta_codigo}</span>
                                         <span class="ans-role" style="font-weight: 600;">{r.cuestionario_nombre} - {r.identificador_sujeto}</span>
                                       </div>
-                                      <form method="POST" style="margin: 0; display: inline-flex;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta respuesta? Esto reabrirá la pregunta para el colaborador si reabres su cuestionario.');">
+                                      <form method="POST" style="margin: 0; display: inline-flex;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta respuesta? Esto reabrirá la pregunta para el participante si reabres su cuestionario.');">
                                         <input type="hidden" name="action" value="delete_response" />
                                         <input type="hidden" name="id" value={r.id} />
                                         <button type="submit" class="delete-response-btn" title="Eliminar Respuesta" style="background: none; border: none; padding: 4px; cursor: pointer; color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; transition: all 0.15s;">
@@ -1783,14 +1788,8 @@ const getDimensionName = (dimId: string) => {
                                     </div>
                                     <p class="ans-question">{r.pregunta_texto}</p>
                                     <div class="ans-value-box">
-                                      <span class="box-label">Respuesta del Colaborador:</span>
-                                      <p class="box-val">
-                                        {
-                                          Array.isArray(r.valor?.respuesta)
-                                            ? r.valor.respuesta.join(' > ')
-                                            : String(r.valor?.respuesta ?? '')
-                                        }
-                                      </p>
+                                      <span class="box-label">Respuesta Registrada:</span>
+                                      <p class="box-val">{formatRespuestaValue(r.valor)}</p>
                                     </div>
                                     <div class="ans-footer">
                                       <span>Sesión: {r.valor?.sesionId?.substring(0, 8) || 'N/A'}</span>

@@ -60,13 +60,31 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const respuestasParaProcesar = respuestas.map(r => {
       // Desempacar el valor de la respuesta
       const ansVal = r.valor?.respuesta;
+      let textoRespuesta = '';
+      if (Array.isArray(ansVal)) {
+        textoRespuesta = ansVal.join('; ');
+      } else if (typeof ansVal === 'object' && ansVal !== null) {
+        if (ansVal.texto) {
+          textoRespuesta = ansVal.texto;
+        } else if (ansVal.nombre || ansVal.sugerencia) {
+          const parts = [];
+          if (ansVal.nombre) parts.push(`Nombre: ${ansVal.nombre}`);
+          if (ansVal.sugerencia) parts.push(`Sugerencia: ${ansVal.sugerencia}`);
+          textoRespuesta = parts.join(' | ');
+        } else {
+          textoRespuesta = JSON.stringify(ansVal);
+        }
+      } else {
+        textoRespuesta = String(ansVal ?? '');
+      }
+
       return {
         dimension: r.dimension_nombre,
         dimension_id: r.dimension_id,
         rol: r.cuestionario_nombre,
         sujeto: r.identificador_sujeto,
         pregunta: r.pregunta_texto,
-        respuesta: Array.isArray(ansVal) ? ansVal.join('; ') : String(ansVal ?? '')
+        respuesta: textoRespuesta
       };
     });
 
