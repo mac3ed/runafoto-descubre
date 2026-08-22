@@ -30,6 +30,23 @@ const safeParseOptions = (opciones: any): string[] => {
   return [];
 };
 
+const formatRespuestaValue = (valor: any): string => {
+  if (!valor) return '';
+  const ans = valor.respuesta !== undefined ? valor.respuesta : valor;
+  if (Array.isArray(ans)) return ans.join(' > ');
+  if (typeof ans === 'object' && ans !== null) {
+    if (ans.texto) return ans.texto;
+    if (ans.nombre || ans.sugerencia) {
+      const parts = [];
+      if (ans.nombre) parts.push(`👤 ${ans.nombre}`);
+      if (ans.sugerencia) parts.push(`💬 ${ans.sugerencia}`);
+      return parts.join(' — ');
+    }
+    return JSON.stringify(ans);
+  }
+  return String(ans);
+};
+
 // Desactivar prerendering estático
 export const prerender = false;
 
@@ -440,23 +457,6 @@ try {
     : [];
     
   // 8. Agrupaciones para la sección de Trazabilidad
-  const formatRespuestaValue = (valor: any): string => {
-    if (!valor) return '';
-    const ans = valor.respuesta !== undefined ? valor.respuesta : valor;
-    if (Array.isArray(ans)) return ans.join(' > ');
-    if (typeof ans === 'object' && ans !== null) {
-      if (ans.texto) return ans.texto;
-      if (ans.nombre || ans.sugerencia) {
-        const parts = [];
-        if (ans.nombre) parts.push(`👤 ${ans.nombre}`);
-        if (ans.sugerencia) parts.push(`💬 ${ans.sugerencia}`);
-        return parts.join(' — ');
-      }
-      return JSON.stringify(ans);
-    }
-    return String(ans);
-  };
-
   respuestasPorRol = {};
   respuestasRaw.forEach(r => {
     const key = `${r.cuestionario_nombre} - ${r.identificador_sujeto}`;
