@@ -1,0 +1,219 @@
+---
+import '../styles/global.css';
+import { sql } from '../lib/db';
+import { validateSession } from '../lib/auth';
+import CuestionarioColector from '../components/CuestionarioColector.svelte';
+
+// Habilitar renderizado dinámico en servidor
+export const prerender = false;
+
+const TOKEN_ESPACIOS = 'token-espacios-alumnos';
+
+// Preview solo disponible para administradores autenticados si se agrega ?preview=true
+const url = new URL(Astro.request.url);
+let isPreview = false;
+if (url.searchParams.get('preview') === 'true') {
+  const adminSession = await validateSession(Astro.cookies);
+  isPreview = !!adminSession;
+}
+
+let errorMsg = '';
+let asignacion: any = null;
+let cuestionario: any = null;
+let preguntas: any[] = [];
+let respuestasExistentes: Record<string, any> = {};
+
+try {
+  // 1. Obtener la asignación de espacios
+  const [dbAsignacion] = await sql`
+    SELECT id, cuestionario_id, token, tipo_sujeto, identificador_sujeto, completado_en, guardado_parcial, estado
+    FROM asignacion WHERE token = ${TOKEN_ESPACIOS}
+  `;
+
+  if (!dbAsignacion) {
+    errorMsg = 'La encuesta de Nuevos Espacios no está configurada o se encuentra inactiva.';
+  } else if (dbAsignacion.estado === 'BORRADOR' && !isPreview) {
+    errorMsg = 'Esta encuesta está actualmente en modo Borrador y aún no está disponible.';
+  } else {
+    asignacion = {
+      id: dbAsignacion.id,
+      token: dbAsignacion.token,
+      tipoSujeto: dbAsignacion.tipo_sujeto,
+      identificadorSujeto: dbAsignacion.identificador_sujeto,
+      completadoEn: dbAsignacion.completado_en,
+      guardadoParcial: dbAsignacion.guardado_parcial,
+      estado: dbAsignacion.estado
+    };
+
+    // 2. Obtener el cuestionario asociado
+    const [dbCuestionario] = await sql`
+      SELECT id, nombre, descripcion, version FROM cuestionario WHERE id = ${dbAsignacion.cuestionario_id}
+    `;
+
+    if (!dbCuestionario) {
+      errorMsg = 'El cuestionario de espacios no existe en el sistema.';
+    } else {
+      cuestionario = {
+        id: dbCuestionario.id,
+        nombre: dbCuestionario.nombre,
+        descripcion: dbCuestionario.descripcion,
+        version: dbCuestionario.version
+      };
+
+      // 3. Obtener las preguntas ordenadas
+      const dbPreguntas = await sql`
+        SELECT id, codigo, texto, tipo, opciones, dimension_id, version, pregunta_padre_id
+        FROM pregunta 
+        WHERE cuestionario_id = ${dbCuestionario.id}
+        ORDER BY orden ASC
+      `;
+
+      const safeParseOptions = (opciones: any): string[] => {
+        if (!opciones) return [];
+        if (Array.isArray(opciones)) return opciones;
+        if (typeof opciones === 'string') {
+          try {
+            const parsed = JSON.parse(opciones);
+            if (Array.isArray(parsed)) return parsed;
+          } catch(e) {}
+          return opciones.split(',').map((s: string) => s.trim()).filter(Boolean);
+        }
+        return [];
+      };
+
+      preguntas = dbPreguntas.map(p => ({
+        id: p.id,
+        codigo: p.codigo,
+        texto: p.texto,
+        tipo: p.tipo,
+        opciones: safeParseOptions(p.opciones),
+        dimensionId: p.dimension_id,
+        version: p.version,
+        preguntaPadreId: p.pregunta_padre_id
+      }));
+
+      if (preguntas.length === 0) {
+        errorMsg = 'Esta encuesta aún no contiene preguntas activas.';
+      }
+    }
+  }
+} catch (error) {
+  console.error('Error al renderizar página de espacios:', error);
+  errorMsg = 'Ocurrió un error al conectar con el servidor. Por favor intenta nuevamente en unos momentos.';
+}
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>RunaFoto - Encuesta de Nuevos Espacios</title>
+    <meta name="description" content="Encuesta interna para alumnos de Escuela RunaFoto sobre los nuevos espacios e instalaciones tecnológicas inauguradas." />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>" />
+  </head>
+  <body>
+    <main class="app-container">
+      {errorMsg ? (
+        <div class="error-screen">
+          <div class="error-card glass">
+            <div class="error-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h1 class="error-title font-display">Encuesta Temporalmente Inaccesible</h1>
+            <p class="error-desc">{errorMsg}</p>
+            <div class="info-note">
+              Si crees que esto es un error, por favor contacta al equipo de Coordinación Académica de RunaFoto.
+            </div>
+          </div>
+        </div>
+      ) : (
+        <CuestionarioColector 
+          client:load 
+          asignacion={asignacion} 
+          cuestionario={cuestionario} 
+          preguntas={preguntas} 
+          respuestasExistentes={respuestasExistentes}
+          preview={isPreview}
+        />
+      )}
+    </main>
+  </body>
+</html>
+
+<style>
+  .app-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .error-screen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+
+  .error-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 24px;
+    border-radius: var(--radius-card);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow-premium);
+    border-color: hsla(0, 85%, 60%, 0.2);
+  }
+
+  .error-icon {
+    width: 64px;
+    height: 64px;
+    color: var(--danger-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .error-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .error-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .error-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .info-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    background-color: hsla(var(--hue-neutral), 20%, 90%, 0.3);
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px dashed var(--border-glass);
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  :global(.dark-theme) .info-note {
+    background-color: hsla(var(--hue-neutral), 30%, 14%, 0.3);
+  }
+</style>

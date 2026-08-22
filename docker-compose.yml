@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: runafoto-postgres-db
+    restart: always
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_DB: runafoto_cuestionarios
+      POSTGRES_USER: runafoto_user
+      POSTGRES_PASSWORD: runafoto_secure_password_2026
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./seed.sql:/docker-entrypoint-initdb.d/2-seed.sql
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: runafoto-astro-app
+    restart: always
+    ports:
+      - '4321:4321'
+    environment:
+      - DATABASE_URL=postgresql://runafoto_user:runafoto_secure_password_2026@db:5432/runafoto_cuestionarios
+      - HOST=0.0.0.0
+      - PORT=4321
+      - ASTRO_DEV_BACKGROUND=false
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    command: pnpm run dev --host
+
+volumes:
+  postgres_data:
+    driver: local

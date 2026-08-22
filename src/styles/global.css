@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Tokens de Color RunaFoto al estilo Premium Corporativo (Plomo, Carbón, Off-white) */
+  --hue-primary: 28;       /* Tono neutral/cálido plomo */
+  --hue-accent: 0;         /* Rojo Alertas */
+  --hue-neutral: 30;       /* Hueso/Gris neutro */
+
+  /* Colores - Tema Claro (Móvil First & Web Pública) */
+  --bg-app: #f7f7f4;           /* Fondo gris hueso / off-white premium */
+  --surface-card: #ffffff;     /* Tarjetas blancas puras */
+  --border-glass: #e5e5e0;     /* Bordes sutiles plomo claro */
+  
+  --text-main: #1c1c1a;        /* Negro carbón suave */
+  --text-muted: #70706b;       /* Gris plomo apagado */
+  
+  --primary-color: #1c1c1a;    /* Negro carbón para elementos activos y líneas */
+  --primary-glow: #3e3e3c;     /* Gris plomo oscuro */
+  --accent-color: #9e1c1c;     /* Rojo ladrillo elegante para alertas */
+  --success-color: #70706b;    /* Gris plomo neutro */
+  --danger-color: #9e1c1c;     /* Rojo ladrillo */
+  
+  /* Sombras y Efectos */
+  --shadow-premium: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-focus: 0 0 0 3px rgba(28, 28, 26, 0.15);
+  --radius-card: 12px;
+  --radius-button: 8px;
+}
+
+/* Tema Oscuro (Dashboard / Admin) */
+.dark-theme {
+  --bg-app: #111318;
+  --surface-card: #181B22;
+  --border-glass: rgba(255, 255, 255, 0.08);
+  
+  --text-main: #F3F4F6;
+  --text-muted: #9CA3AF;
+  
+  --shadow-premium: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos de Reset y Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+}
+
+/* ============================================
+   Animaciones Reutilizables
+   ============================================ */
+
+@keyframes shine {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.shine-effect {
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+}
+
+/* Spinner de carga */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid hsla(var(--hue-primary), 80%, 58%, 0.2);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+.loading-spinner.sm {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+/* Toast de notificación */
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px) scale(0.95);
+  }
+}
+
+/* Utilidad Glassmorphism */
+.glass {
+  background: var(--surface-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-premium);
+}

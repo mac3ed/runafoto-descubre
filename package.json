@@ -1,0 +1,28 @@
+{
+  "name": "runafoto-cuestionarios",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=11.0.0"
+  },
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "security-check": "node verify-package-age.js",
+    "dev": "node verify-package-age.js && node -e \"require('fs').rmSync('.astro/dev.json', { force: true })\" && astro dev",
+    "build": "node verify-package-age.js && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.0.0",
+    "@astrojs/svelte": "^9.0.0",
+    "astro": "^7.0.5",
+    "postgres": "^3.4.9",
+    "svelte": "^5.56.4",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1"
+  }
+}

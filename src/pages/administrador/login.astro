@@ -1,0 +1,316 @@
+---
+import { sql } from '../../lib/db';
+import { validateSession, createSession, verifyPassword } from '../../lib/auth';
+
+export const prerender = false;
+
+// Si ya inició sesión, redirigir directo a administrador
+const session = await validateSession(Astro.cookies);
+if (session) {
+  return Astro.redirect('/administrador');
+}
+
+let errorMsg = '';
+let email = '';
+
+if (Astro.request.method === 'POST') {
+  try {
+    const formData = await Astro.request.formData();
+    email = (formData.get('email') as string || '').trim();
+    const password = formData.get('password') as string || '';
+
+    if (!email || !password) {
+      errorMsg = 'Por favor ingresa tu correo y contraseña.';
+    } else {
+      const [admin] = await sql`
+        SELECT * FROM administrador WHERE email = ${email}
+      `;
+
+      if (admin && verifyPassword(password, admin.password_hash)) {
+        await createSession(admin.id, Astro.cookies);
+        return Astro.redirect('/administrador');
+      } else {
+        errorMsg = 'Credenciales incorrectas. Intenta de nuevo.';
+      }
+    }
+  } catch (err) {
+    console.error('Error durante el inicio de sesión:', err);
+    errorMsg = 'Ocurrió un error en el servidor. Intenta más tarde.';
+  }
+}
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=device-width, initial-scale=1.0">
+  <title>RunaFoto - Ingreso Administrativo</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Cargar fuente Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #f7f7f4;
+      --card-bg: rgba(255, 255, 255, 0.65);
+      --border-glass: rgba(28, 28, 26, 0.08);
+      --text-main: #1c1c1a;
+      --text-muted: #6e6e6a;
+      --primary: #1c1c1a;
+      --primary-hover: #3a3a35;
+      --error-bg: #fdf2f2;
+      --error-text: #9b1c1c;
+      --error-border: #f8b4b4;
+    }
+
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Fondo decorativo elegante */
+    .bg-decorator {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 1;
+      opacity: 0.4;
+    }
+    .decorator-1 {
+      width: 400px;
+      height: 400px;
+      background: rgba(28, 28, 26, 0.04);
+      top: -100px;
+      right: -100px;
+    }
+    .decorator-2 {
+      width: 350px;
+      height: 350px;
+      background: rgba(28, 28, 26, 0.03);
+      bottom: -80px;
+      left: -80px;
+    }
+
+    /* Contenedor principal */
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Cabecera / Logo */
+    .brand-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .logo-img {
+      height: 42px;
+      opacity: 0.95;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    /* Caja de login glassmorphism */
+    .login-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .card-subtitle {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    /* Formulario */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .form-input {
+      width: 100%;
+      height: 42px;
+      padding: 0 14px;
+      border: 1px solid var(--border-glass);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.4);
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 0 0 3px rgba(28, 28, 26, 0.04);
+    }
+
+    /* Alerta de error */
+    .error-alert {
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      color: var(--error-text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Botón de envío */
+    .btn-submit {
+      width: 100%;
+      height: 42px;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.985);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- Decoraciones de fondo -->
+  <div class="bg-decorator decorator-1"></div>
+  <div class="bg-decorator decorator-2"></div>
+
+  <div class="login-container">
+    <header class="brand-header">
+      <img src="/logo-runafoto.svg" alt="RunaFoto Logo" class="logo-img" />
+      <span class="brand-title">Descubrimientos</span>
+    </header>
+
+    <main class="login-card">
+      <h1 class="card-title">Consola de Control</h1>
+      <p class="card-subtitle">Inicia sesión con tus credenciales seguras para acceder al panel de descubrimientos organizacionales.</p>
+
+      {errorMsg && (
+        <div class="error-alert">
+          <span>⚠️</span>
+          <span>{errorMsg}</span>
+        </div>
+      )}
+
+      <form method="POST">
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            class="form-input" 
+            placeholder="maycol.ac@gmail.com"
+            value={email}
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 24px;">
+          <label for="password">Contraseña</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required 
+            class="form-input" 
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span>Ingresar al Sistema</span>
+          <span>→</span>
+        </button>
+      </form>
+    </main>
+
+    <footer class="footer-note">
+      <p>© 2026 Grupo RunaFoto. Todos los derechos reservados.</p>
+    </footer>
+  </div>
+</body>
+</html>

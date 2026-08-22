@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Iniciar Servidores (Docker)",
+      "type": "shell",
+      "command": "docker compose up --build -d",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Detener Servidores (Docker)",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": []
+    },
+    {
+      "label": "Ver Logs del Servidor Astro",
+      "type": "shell",
+      "command": "docker compose logs -f web",
+      "problemMatcher": []
+    },
+    {
+      "label": "Verificar Antigüedad de Dependencias",
+      "type": "shell",
+      "command": "node verify-package-age.js",
+      "problemMatcher": []
+    }
+  ]
+}

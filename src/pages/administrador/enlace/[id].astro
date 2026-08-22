@@ -1,0 +1,36 @@
+---
+import { sql } from '../../../lib/db';
+import { validateSession } from '../../../lib/auth';
+
+export const prerender = false;
+
+// Validar que el administrador esté autenticado antes de permitir redirecciones administrativas
+const session = await validateSession(Astro.cookies);
+if (!session) {
+  return Astro.redirect('/administrador/login');
+}
+
+const { id } = Astro.params;
+
+if (!id) {
+  return Astro.redirect('/administrador');
+}
+
+try {
+  // Obtener la asignación actual y su hito_id asociado para redirigir al panel unificado en la pantalla principal
+  const [dbAsignacion] = await sql`
+    SELECT a.id, c.hito_id
+    FROM asignacion a
+    JOIN cuestionario c ON a.cuestionario_id = c.id
+    WHERE a.id = ${id}
+  `;
+
+  if (dbAsignacion) {
+    return Astro.redirect(`/administrador?hitoId=${dbAsignacion.hito_id}&tab=lanzamiento&admin_enlace_id=${id}`);
+  }
+} catch (err) {
+  console.error("Error al redirigir enlace:", err);
+}
+
+return Astro.redirect('/administrador');
+---

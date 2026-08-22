@@ -1,0 +1,235 @@
+---
+import '../../styles/global.css';
+import { sql } from '../../lib/db';
+import { validateSession } from '../../lib/auth';
+import CuestionarioColector from '../../components/CuestionarioColector.svelte';
+
+// Habilitar renderizado dinámico en servidor
+export const prerender = false;
+
+const { token } = Astro.params;
+
+// M2: Preview solo disponible para administradores autenticados
+const url = new URL(Astro.request.url);
+let isPreview = false;
+if (url.searchParams.get('preview') === 'true') {
+  const adminSession = await validateSession(Astro.cookies);
+  isPreview = !!adminSession; // Solo activar preview si hay sesión admin válida
+}
+
+let errorMsg = '';
+let asignacion: any = null;
+let cuestionario: any = null;
+let preguntas: any[] = [];
+let respuestasExistentes: Record<string, any> = {};
+
+try {
+  if (!token) {
+    errorMsg = 'Token de acceso no especificado.';
+  } else {
+    // 1. Obtener la asignación
+    const [dbAsignacion] = await sql`
+      SELECT id, cuestionario_id, token, tipo_sujeto, identificador_sujeto, completado_en, guardado_parcial, estado
+      FROM asignacion WHERE token = ${token}
+    `;
+
+    if (!dbAsignacion) {
+      errorMsg = 'El enlace de acceso es inválido o ha expirado.';
+    } else if (dbAsignacion.estado === 'BORRADOR' && !isPreview) {
+      errorMsg = 'Esta investigación está actualmente en modo Borrador y no está disponible para responder.';
+    } else if (dbAsignacion.tipo_sujeto === 'INDIVIDUAL' && dbAsignacion.completado_en && !isPreview) {
+      errorMsg = 'Esta investigación individual ya ha sido completada y enviada.';
+    } else {
+      asignacion = {
+        id: dbAsignacion.id,
+        token: dbAsignacion.token,
+        tipoSujeto: dbAsignacion.tipo_sujeto,
+        identificadorSujeto: dbAsignacion.identificador_sujeto,
+        completadoEn: dbAsignacion.completado_en,
+        guardadoParcial: dbAsignacion.guardado_parcial,
+        estado: dbAsignacion.estado
+      };
+
+      // 2. Obtener el cuestionario asociado
+      const [dbCuestionario] = await sql`
+        SELECT id, nombre, descripcion, version FROM cuestionario WHERE id = ${dbAsignacion.cuestionario_id}
+      `;
+
+      if (!dbCuestionario) {
+        errorMsg = 'La investigación asociada no existe en el sistema.';
+      } else {
+        cuestionario = {
+          id: dbCuestionario.id,
+          nombre: dbCuestionario.nombre,
+          descripcion: dbCuestionario.descripcion,
+          version: dbCuestionario.version
+        };
+
+        // 3. Obtener las preguntas del cuestionario
+        const dbPreguntas = await sql`
+          SELECT id, codigo, texto, tipo, opciones, dimension_id, version, pregunta_padre_id
+          FROM pregunta 
+          WHERE cuestionario_id = ${dbCuestionario.id}
+          ORDER BY orden ASC
+        `;
+        
+        const safeParseOptions = (opciones: any): string[] => {
+          if (!opciones) return [];
+          if (Array.isArray(opciones)) return opciones;
+          if (typeof opciones === 'string') {
+            try {
+              const parsed = JSON.parse(opciones);
+              if (Array.isArray(parsed)) return parsed;
+            } catch(e) {}
+            return opciones.split(',').map((s: string) => s.trim()).filter(Boolean);
+          }
+          return [];
+        };
+
+        preguntas = dbPreguntas.map(p => ({
+          id: p.id,
+          codigo: p.codigo,
+          texto: p.texto,
+          tipo: p.tipo,
+          opciones: safeParseOptions(p.opciones),
+          dimensionId: p.dimension_id,
+          version: p.version,
+          preguntaPadreId: p.pregunta_padre_id
+        }));
+
+        if (preguntas.length === 0) {
+          errorMsg = 'Esta investigación todavía no contiene preguntas cargadas.';
+        } else {
+          // 4. Obtener respuestas ya enviadas para pre-cargar en el frontend
+          const dbRespuestas = await sql`
+            SELECT pregunta_id, valor FROM respuesta WHERE asignacion_id = ${dbAsignacion.id}
+          `;
+          dbRespuestas.forEach(r => {
+            if (r.valor && r.valor.respuesta !== undefined) {
+              respuestasExistentes[r.pregunta_id] = r.valor.respuesta;
+            }
+          });
+        }
+      }
+    }
+  }
+} catch (error) {
+  console.error('Error al renderizar página del cuestionario:', error);
+  errorMsg = 'Ocurrió un error al intentar conectar con el servidor de base de datos.';
+}
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>{cuestionario ? `RunaFoto - Investigación ${cuestionario.nombre}` : 'RunaFoto Investigaciones'}</title>
+    <!-- Favicon sutil -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>" />
+  </head>
+  <body>
+    <main class="app-container">
+      {errorMsg ? (
+        <div class="error-screen">
+          <div class="error-card glass">
+            <div class="error-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h1 class="error-title font-display">Investigación Inaccesible</h1>
+            <p class="error-desc">{errorMsg}</p>
+            <div class="info-note">
+              Si crees que esto es un error, por favor contacta al coordinador de RunaFoto o solicita un nuevo enlace.
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* Inyectar el colector dinámico en modo cliente */
+        <CuestionarioColector 
+          client:load 
+          asignacion={asignacion} 
+          cuestionario={cuestionario} 
+          preguntas={preguntas} 
+          respuestasExistentes={respuestasExistentes}
+          preview={isPreview}
+        />
+      )}
+    </main>
+  </body>
+</html>
+
+<style>
+  .app-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .error-screen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+
+  .error-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 24px;
+    border-radius: var(--radius-card);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow-premium);
+    border-color: hsla(0, 85%, 60%, 0.2);
+  }
+
+  .error-icon {
+    width: 64px;
+    height: 64px;
+    color: var(--danger-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .error-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .error-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .error-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .info-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    background-color: hsla(var(--hue-neutral), 20%, 90%, 0.3);
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px dashed var(--border-glass);
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  :global(.dark-theme) .info-note {
+    background-color: hsla(var(--hue-neutral), 30%, 14%, 0.3);
+  }
+</style>
