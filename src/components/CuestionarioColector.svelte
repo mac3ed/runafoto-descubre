@@ -7,8 +7,6 @@
   import BottomNavigation from './BottomNavigation.svelte';
   import CompletionScreen from './CompletionScreen.svelte';
 
-
-
   // Props de Svelte 5
   let { 
     asignacion, 
@@ -24,7 +22,7 @@
     preview?: boolean;
   } = $props();
 
-  // Estados reactivos ($state en Svelte 5)
+  // Estados reactivos
   let paso = $state<'bienvenida' | 'cuestionario' | 'exito'>('bienvenida');
   let preguntaActualIndex = $state(0);
   let respuestas = $state<Record<string, any>>({});
@@ -33,18 +31,18 @@
   let toastMsg = $state('');
   let toastTimer: ReturnType<typeof setTimeout>;
 
-  // ID único de sesión/intento (generado en el cliente para consolidar respuestas en encuestas grupales)
+  // ID único de sesión/intento
   let sesionId = $state('');
   let deviceId = $state('');
   let fingerprint = $state('');
 
-  const safeParseOptions = (opciones: any): string[] => {
+  const safeParseOptions = (opciones: any): any => {
     if (!opciones) return [];
-    if (Array.isArray(opciones)) return opciones;
+    if (typeof opciones === 'object') return opciones;
     if (typeof opciones === 'string') {
       try {
         const parsed = JSON.parse(opciones);
-        if (Array.isArray(parsed)) return parsed;
+        return parsed;
       } catch (e) {}
       return opciones.split(',').map((s: string) => s.trim()).filter(Boolean);
     }
@@ -57,37 +55,49 @@
     opciones: safeParseOptions(preguntaActualRaw.opciones)
   } : null);
   
-  // Bug fix: progreso 1-indexed → en pregunta 1 ya muestra progreso visible (no 0%)
   let progreso = $derived(preguntas.length > 0 ? Math.round(((preguntaActualIndex + 1) / preguntas.length) * 100) : 0);
   let respuestaDada = $derived(preguntaActual ? respuestas[preguntaActual.id] : undefined);
-  let nextDisabled = $derived(respuestaDada === undefined || respuestaDada === null || respuestaDada === '');
+  
+  // Detección si la pregunta es opcional
+  let esOpcional = $derived(
+    preguntaActual?.tipo === 'CORTA' || 
+    preguntaActual?.tipo === 'CORTA_OPCIONAL' ||
+    (preguntaActual?.texto ? preguntaActual.texto.toLowerCase().includes('opcional') : false)
+  );
 
-  // Tiempo estimado de completado basado en cantidad de preguntas
-  let tiempoEstimado = $derived(Math.ceil(preguntas.length * 0.75));
+  // Verificación de habilitación del botón Siguiente
+  let nextDisabled = $derived.by(() => {
+    if (!preguntaActual) return true;
+    if (esOpcional) return false; // Las preguntas opcionales NUNCA bloquean
 
-  // Bug fix: formatear dimensionId correctamente (ej: 'comercial' → 'Comercial')
+    if (preguntaActual.tipo === 'FORMACION_PERIODO') {
+      if (!respuestaDada || typeof respuestaDada !== 'object') return true;
+      return !respuestaDada.formacion || !respuestaDada.periodo;
+    }
+
+    return respuestaDada === undefined || respuestaDada === null || respuestaDada === '';
+  });
+
+  let tiempoEstimado = $derived(Math.max(2, Math.ceil(preguntas.length * 0.25)));
+
   function formatDimensionName(id: string): string {
     if (!id) return '';
-    return id.charAt(0).toUpperCase() + id.slice(1);
+    return id.replace('espacios_', '').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   }
 
-  // Sistema de Toast para feedback visual de autosave
   function showToast(msg: string) {
     toastMsg = msg;
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => { toastMsg = ''; }, 2000);
   }
 
-  // Scroll al inicio de la página al cambiar de pregunta
   $effect(() => {
     if (paso === 'cuestionario') {
-      // Acceder al índice para registrar la dependencia reactiva
       const _idx = preguntaActualIndex;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
 
-  // Función de huella digital de terminal ligera (Canvas + System Metadata)
   function generateFingerprint(): string {
     const parts = [
       navigator.userAgent,
@@ -110,13 +120,9 @@
         ctx.fillText("RunaFoto strategic 2026 😃", 15, 17);
         parts.push(canvas.toDataURL());
       }
-    } catch (e) {
-      // Ignorar errores si el navegador bloquea canvas
-    }
+    } catch (e) {}
     
     const raw = parts.join('||');
-    
-    // FNV-1a Hash de 32 bits
     let hash = 2166136261;
     for (let i = 0; i < raw.length; i++) {
       hash ^= raw.charCodeAt(i);
@@ -125,8 +131,7 @@
     return (hash >>> 0).toString(16);
   }
 
-  onMount(() => {
-    // 1. Obtener o generar el deviceId global de este celular
+  function initSession() {
     const globalDeviceKey = 'runafoto-device-id';
     let savedDeviceId = localStorage.getItem(globalDeviceKey);
     if (!savedDeviceId) {
@@ -134,53 +139,41 @@
       localStorage.setItem(globalDeviceKey, savedDeviceId!);
     }
     deviceId = savedDeviceId!;
-
-    // 2. Generar huella digital del dispositivo
     fingerprint = generateFingerprint();
 
-    // 3. Generar o cargar el sesionId para este cuestionario particular
-    const localSesionKey = `sesion-${asignacion.token}`;
-    let savedSesionId = localStorage.getItem(localSesionKey);
-    if (!savedSesionId) {
-      savedSesionId = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15);
-      localStorage.setItem(localSesionKey, savedSesionId!);
-    }
-    sesionId = savedSesionId!;
+    // Nueva sesión única por cada respuesta
+    sesionId = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15);
+  }
 
-    // 4. Recuperar respuestas guardadas en localStorage (autosave) y del servidor
+  onMount(() => {
+    initSession();
+
+    // Si hay respuestas guardadas parcialmente en esta sesión
     const localDataKey = `respuestas-${asignacion.token}`;
     const saved = localStorage.getItem(localDataKey);
     let respuestasLocales = {};
     if (saved) {
       try {
         respuestasLocales = JSON.parse(saved);
-      } catch (e) {
-        console.error('Error cargando respuestas locales:', e);
-      }
+      } catch (e) {}
     }
 
-    // Combinar: preferir el local, de lo contrario el del servidor
     respuestas = {
       ...respuestasExistentes,
       ...respuestasLocales
     };
 
-    // Determinar las preguntas faltantes (sin contestar)
     const indices = preguntas.map((p, idx) => ({ id: p.id, idx }));
     const faltantes = indices.filter(item => respuestas[item.id] === undefined || respuestas[item.id] === null || respuestas[item.id] === '');
     
-    // Si ya ha respondido al menos una pregunta (o tiene respuestas cargadas del servidor), lo llevamos directo a la primera que falte
     if (faltantes.length > 0 && faltantes.length < preguntas.length) {
       preguntaActualIndex = faltantes[0].idx;
       paso = 'cuestionario';
     }
   });
 
-
-
   let autosaveTimer: ReturnType<typeof setTimeout>;
 
-  // Sincronizar con el servidor con debounce (800ms)
   function sincronizarConServidor(respuestasSync: Record<string, any>) {
     clearTimeout(autosaveTimer);
     autosaveTimer = setTimeout(() => {
@@ -202,26 +195,20 @@
           deviceId,
           fingerprint
         })
-      }).catch(err => console.warn('Error en autosave background:', err));
+      }).catch(err => console.warn('Error en autosave:', err));
     }, 800);
   }
 
-  // Guardar en localStorage y hacer sincronización parcial silenciosa
   function guardarLocalmente(nuevasRespuestas: Record<string, any>) {
     respuestas = nuevasRespuestas;
     
-    if (preview) {
-      console.log('[Vista Previa] Guardado local omitido. Respuestas:', respuestas);
-      return;
-    }
+    if (preview) return;
 
     localStorage.setItem(`respuestas-${asignacion.token}`, JSON.stringify(respuestas));
     showToast('✓ Guardado');
-
     sincronizarConServidor(respuestas);
   }
 
-  // Manejar el cambio de respuesta para una pregunta específica
   function handleRespuesta(valor: any) {
     const copia = { ...respuestas, [preguntaActual.id]: valor };
     guardarLocalmente(copia);
@@ -231,7 +218,6 @@
     }
   }
 
-  // Avanzar en el cuestionario
   async function irSiguiente() {
     if (preguntaActualIndex < preguntas.length - 1) {
       preguntaActualIndex++;
@@ -240,26 +226,22 @@
     }
   }
 
-  // Retroceder
   function irAtras() {
     if (preguntaActualIndex > 0) {
       preguntaActualIndex--;
     }
   }
 
-  // Enviar el cuestionario de forma definitiva
   async function enviarCuestionario() {
     clearTimeout(autosaveTimer);
     cargando = true;
     errorMsg = '';
     
     if (preview) {
-      // Simular retraso y éxito en vista previa
       setTimeout(() => {
         cargando = false;
         paso = 'exito';
-        console.log('[Vista Previa] Envío finalizado de forma simulada. Respuestas:', respuestas);
-      }, 600);
+      }, 500);
       return;
     }
 
@@ -286,7 +268,6 @@
 
       if (response.ok) {
         localStorage.removeItem(`respuestas-${asignacion.token}`);
-        localStorage.removeItem(`sesion-${asignacion.token}`);
         paso = 'exito';
       } else {
         errorMsg = data.error || 'Error al enviar las respuestas. Inténtalo de nuevo.';
@@ -298,20 +279,22 @@
       cargando = false;
     }
   }
+
+  function reiniciarEncuesta() {
+    respuestas = {};
+    preguntaActualIndex = 0;
+    initSession();
+    paso = 'bienvenida';
+  }
 </script>
 
-<div class="colector-layout" class:has-preview={preview} class:has-test={asignacion.estado === 'TEST'}>
+<div class="colector-layout" class:has-preview={preview}>
   {#if preview}
     <div class="preview-banner font-display">
       <span>👁️ MODO VISTA PREVIA (Las respuestas no se guardarán)</span>
     </div>
-  {:else if asignacion.estado === 'TEST'}
-    <div class="test-banner font-display">
-      <span>🧪 MODO DE PRUEBA (Las respuestas no afectarán las estadísticas reales)</span>
-    </div>
   {/if}
 
-  <!-- Toast de autosave -->
   {#if toastMsg}
     <div class="toast-notification" role="status" aria-live="polite">
       {toastMsg}
@@ -319,7 +302,7 @@
   {/if}
 
   {#if paso === 'bienvenida'}
-    <!-- Pantalla 1: Bienvenida -->
+    <!-- Pantalla 1: Bienvenida Amigable y Juvenil -->
     <div class="welcome-screen">
       <div class="welcome-card glass">
         <div class="logo-area">
@@ -327,30 +310,23 @@
         </div>
         
         <h1 class="welcome-title font-display">
-          Investigación: {cuestionario.nombre}
+          ¡Queremos saber de ti y tu experiencia! 📸✨
         </h1>
         
         <p class="welcome-desc">
-          {cuestionario.descripcion}
+          Cuéntanos qué te parecen los <strong>Nuevos Espacios</strong> inaugurados en nuestra sede y cómo podemos hacer que tus prácticas sean cada día más increíbles.
         </p>
 
-
-        
         <div class="meta-row">
-          <div class="meta-tag">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="meta-icon">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-            <span>{asignacion.tipoSujeto === 'GRUPAL' ? 'Grupal / Área' : 'Individual'}</span>
-          </div>
           <div class="meta-tag">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="meta-icon">
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <span>~{tiempoEstimado} min · {preguntas.length} preguntas</span>
+            <span>~{tiempoEstimado} minutos</span>
+          </div>
+          <div class="meta-tag">
+            <span>✨ {preguntas.length} preguntas rápidas</span>
           </div>
         </div>
 
@@ -359,13 +335,17 @@
           class="start-button font-display shine-effect" 
           onclick={() => paso = 'cuestionario'}
         >
-          Comenzar Investigación
+          ¡Queremos saber de ti! Comenzar 🚀
         </button>
+
+        <p class="anonym-note">
+          🔒 Puedes responder de forma 100% anónima.
+        </p>
       </div>
     </div>
 
   {:else if paso === 'cuestionario'}
-    <!-- Pantalla 2: Cuestionario Dinámico -->
+    <!-- Pantalla 2: Cuestionario Dinámico con Buen Espaciado -->
     <div class="cuestionario-header">
       <ProgressBar value={progreso} variant="slim" />
       <div class="header-details">
@@ -381,15 +361,65 @@
         </div>
       {/if}
 
-      <!-- Animación de llave basada en la ID de pregunta para forzar recreación de tarjetas -->
       {#key preguntaActual.id}
         <QuestionCard 
           code={preguntaActual.codigo} 
           questionText={preguntaActual.texto} 
-          dimensionName={`Dimensión ${formatDimensionName(preguntaActual.dimensionId)}`}
+          dimensionName={formatDimensionName(preguntaActual.dimensionId)}
         >
-          {#if preguntaActual.tipo === 'BOOLEAN'}
-            <!-- Bug fix: usar variant compact para botones Sí/No (spec UX) -->
+          {#if preguntaActual.tipo === 'FORMACION_PERIODO'}
+            <!-- Selector Visual y Dependiente de Formación y Período -->
+            <div class="formacion-periodo-wrapper">
+              <div class="sub-step-block">
+                <p class="step-title font-display">1️⃣ Selecciona tu formación o curso:</p>
+                <div class="options-vertical">
+                  {#each (preguntaActual.opciones?.formaciones || []) as form}
+                    <button 
+                      type="button" 
+                      class="custom-pill-btn glass" 
+                      class:selected={(typeof respuestaDada === 'object' ? respuestaDada?.formacion : '') === form}
+                      onclick={() => {
+                        const cur = (typeof respuestaDada === 'object' && respuestaDada !== null) ? respuestaDada : {};
+                        handleRespuesta({ 
+                          ...cur, 
+                          formacion: form, 
+                          texto: `${form} — ${cur.periodo || '(período pendiente)'}` 
+                        });
+                      }}
+                    >
+                      <span class="radio-circle"></span>
+                      <span class="pill-text">{form}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+
+              <div class="sub-step-block" style="margin-top: 24px;">
+                <p class="step-title font-display">2️⃣ Selecciona tu período o avance actual:</p>
+                <div class="options-vertical">
+                  {#each (preguntaActual.opciones?.periodos || []) as per}
+                    <button 
+                      type="button" 
+                      class="custom-pill-btn glass" 
+                      class:selected={(typeof respuestaDada === 'object' ? respuestaDada?.periodo : '') === per}
+                      onclick={() => {
+                        const cur = (typeof respuestaDada === 'object' && respuestaDada !== null) ? respuestaDada : {};
+                        handleRespuesta({ 
+                          ...cur, 
+                          periodo: per, 
+                          texto: `${cur.formacion || '(formación pendiente)'} — ${per}` 
+                        });
+                      }}
+                    >
+                      <span class="radio-circle"></span>
+                      <span class="pill-text">{per}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            </div>
+
+          {:else if preguntaActual.tipo === 'BOOLEAN'}
             <div class="boolean-group">
               <AnswerButton 
                 label="Sí" 
@@ -404,9 +434,10 @@
                 onclick={() => handleRespuesta(false)} 
               />
             </div>
+
           {:else if preguntaActual.tipo === 'OPCION_MULTIPLE'}
             <div class="options-vertical">
-              {#each preguntaActual.opciones as opcion}
+              {#each (Array.isArray(preguntaActual.opciones) ? preguntaActual.opciones : []) as opcion}
                 <AnswerButton 
                   label={opcion} 
                   selected={respuestaDada === opcion} 
@@ -414,33 +445,41 @@
                 />
               {/each}
             </div>
+
           {:else if preguntaActual.tipo === 'ORDEN'}
-            <p class="instruction-txt">Arrastra o usa las flechas para ordenar de mayor a menor importancia:</p>
+            <p class="instruction-txt">Arrastra o usa las flechas para ordenar:</p>
             <DragSortList 
               items={respuestaDada || preguntaActual.opciones} 
               onchange={(nuevoOrden) => handleRespuesta(nuevoOrden)} 
             />
+
           {:else if preguntaActual.tipo === 'CORTA'}
-            <textarea 
-              class="text-input glass" 
-              placeholder="Escribe tu respuesta aquí de forma abierta..." 
-              value={respuestaDada || ''}
-              oninput={(e) => handleRespuesta((e.target as HTMLTextAreaElement).value)}
-            ></textarea>
+            <div class="corta-wrapper">
+              <textarea 
+                class="text-input glass" 
+                placeholder={preguntaActual.texto.toLowerCase().includes('nombre') ? 'Escribe tu nombre o apodo aquí (opcional)...' : 'Escribe tu respuesta aquí (opcional)...'}
+                value={typeof respuestaDada === 'string' ? respuestaDada : (respuestaDada?.respuesta || '')}
+                oninput={(e) => handleRespuesta((e.target as HTMLTextAreaElement).value)}
+                rows="4"
+              ></textarea>
+              {#if esOpcional}
+                <div class="optional-hint">
+                  <span>💡 Esta respuesta es 100% opcional. Puedes dejarla en blanco y avanzar.</span>
+                </div>
+              {/if}
+            </div>
           {/if}
         </QuestionCard>
       {/key}
     </div>
 
-    <!-- Overlay de carga durante el envío final -->
     {#if cargando}
       <div class="loading-overlay" role="status">
         <div class="loading-spinner"></div>
-        <p class="loading-msg font-display">Enviando tus respuestas...</p>
+        <p class="loading-msg font-display">Guardando tus respuestas...</p>
       </div>
     {/if}
 
-    <!-- Navegación inferior adaptada a una mano -->
     <BottomNavigation 
       showBack={preguntaActualIndex > 0} 
       isLastQuestion={preguntaActualIndex === preguntas.length - 1} 
@@ -450,8 +489,11 @@
     />
 
   {:else if paso === 'exito'}
-    <!-- Pantalla 3: Agradecimiento -->
-    <CompletionScreen identificadorSujeto={asignacion.identificadorSujeto} />
+    <!-- Pantalla 3: Agradecimiento con Opción Multi-Alumno -->
+    <CompletionScreen 
+      identificadorSujeto={asignacion.identificadorSujeto} 
+      onreset={reiniciarEncuesta}
+    />
   {/if}
 </div>
 
@@ -461,23 +503,22 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 90px; /* Evitar que el BottomNavigation tape el contenido */
+    padding-bottom: 100px;
   }
 
-  /* Estilos de Bienvenida */
   .welcome-screen {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 16px;
-    margin-top: 40px;
+    padding: 24px 16px;
+    margin-top: 30px;
   }
 
   .welcome-card {
     width: 100%;
-    max-width: 500px;
-    padding: 36px 24px;
+    max-width: 520px;
+    padding: 40px 28px;
     border-radius: var(--radius-card);
     text-align: center;
     display: flex;
@@ -492,94 +533,90 @@
     align-items: center;
   }
 
-
   .welcome-title {
     font-size: 24px;
     font-weight: 700;
     color: var(--text-main);
-    line-height: 1.2;
+    line-height: 1.3;
   }
 
   .welcome-desc {
     font-size: 15px;
     color: var(--text-muted);
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
+  .meta-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
 
   .meta-tag {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    gap: 6px;
     font-size: 13px;
+    font-weight: 600;
     color: var(--text-muted);
-    background-color: hsla(var(--hue-primary), 80%, 58%, 0.05);
-    padding: 8px 16px;
+    background-color: hsla(var(--hue-neutral), 20%, 90%, 0.5);
+    padding: 6px 14px;
     border-radius: 9999px;
   }
 
+  :global(.dark-theme) .meta-tag {
+    background-color: hsla(var(--hue-neutral), 30%, 18%, 0.5);
+  }
+
   .meta-icon {
-    width: 16px;
-    height: 16px;
-    color: var(--primary-color);
+    width: 15px;
+    height: 15px;
   }
 
   .start-button {
-    height: 52px;
-    width: 100%;
-    border-radius: var(--radius-button);
+    background: var(--primary-color);
+    color: #fff;
     border: none;
-    background: var(--primary-glow);
-    color: white;
+    padding: 16px 24px;
     font-size: 16px;
     font-weight: 700;
+    border-radius: var(--radius-button);
     cursor: pointer;
-    box-shadow: 0 4px 15px hsla(var(--hue-primary), 80%, 58%, 0.3);
-    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
 
   .start-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 25px hsla(var(--hue-primary), 80%, 58%, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   }
 
   .start-button:active {
-    transform: scale(0.98);
+    transform: translateY(0);
   }
 
-  /* Estilos del Cuestionario Activo */
+  .anonym-note {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
   .cuestionario-header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    background-color: hsla(var(--hue-neutral), 30%, 97%, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    z-index: 10;
+    background: var(--bg-app);
     border-bottom: 1px solid var(--border-glass);
-    z-index: 90;
-  }
-
-  :global(.dark-theme) .cuestionario-header {
-    background-color: hsla(var(--hue-neutral), 40%, 6%, 0.9);
+    padding-bottom: 12px;
   }
 
   .header-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 48px;
-    padding: 0 16px;
-    max-width: 600px;
+    padding: 12px 20px 0;
+    max-width: 640px;
     margin: 0 auto;
-  }
-
-  .logo-header {
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: var(--primary-color);
   }
 
   .progress-txt {
@@ -590,30 +627,12 @@
 
   .cuestionario-body {
     flex: 1;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* flex-start evita saltos en preguntas largas */
-    padding: 80px 16px 24px 16px; /* 80px superior para no ser tapado por el header */
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .error-banner {
-    background-color: hsla(0, 85%, 60%, 0.1);
-    border: 1px solid var(--danger-color);
-    color: var(--danger-color);
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    font-size: 14px;
-    text-align: center;
-  }
-
-  /* Contenedores de opciones */
-  .boolean-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
 
@@ -623,27 +642,90 @@
     gap: 12px;
   }
 
-  .instruction-txt {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
+  .boolean-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .formacion-periodo-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     text-align: left;
+  }
+
+  .step-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 10px;
+  }
+
+  .custom-pill-btn {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+    border: 1px solid var(--border-glass);
+    background: var(--surface-card);
+    transition: all 0.2s ease;
+  }
+
+  .custom-pill-btn:hover {
+    border-color: var(--primary-color);
+    background-color: hsla(var(--hue-primary), 80%, 58%, 0.04);
+  }
+
+  .custom-pill-btn.selected {
+    border-color: var(--primary-color);
+    background-color: hsla(var(--hue-primary), 80%, 58%, 0.12);
+    font-weight: 700;
+  }
+
+  .radio-circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .custom-pill-btn.selected .radio-circle {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    box-shadow: inset 0 0 0 3px #fff;
+  }
+
+  .corta-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .text-input {
     width: 100%;
-    min-height: 140px;
     padding: 16px;
-    border-radius: var(--radius-button);
-    background: var(--surface-card);
+    border-radius: 10px;
     border: 1px solid var(--border-glass);
-    color: var(--text-main);
+    background: var(--surface-card);
     font-family: inherit;
     font-size: 15px;
+    color: var(--text-main);
     resize: vertical;
     outline: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
-    transition: all 0.25s ease;
+    transition: border-color 0.2s;
   }
 
   .text-input:focus {
@@ -651,113 +733,73 @@
     box-shadow: var(--shadow-focus);
   }
 
-  /* Estilos de Vista Previa */
-  .preview-banner {
-    background: linear-gradient(135deg, hsl(45, 90%, 50%), hsl(24, 90%, 50%));
-    color: white;
-    text-align: center;
+  .optional-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: hsla(var(--hue-neutral), 20%, 90%, 0.4);
     padding: 8px 12px;
-    font-size: 13px;
-    font-weight: 700;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    letter-spacing: 0.5px;
+    border-radius: 6px;
   }
 
-
-  /* Estilos de Vista Previa y Test */
-  .preview-banner,
-  .test-banner {
-    color: white;
-    text-align: center;
-    padding: 8px 12px;
-    font-size: 13px;
-    font-weight: 700;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    letter-spacing: 0.5px;
+  :global(.dark-theme) .optional-hint {
+    background: hsla(var(--hue-neutral), 30%, 18%, 0.4);
   }
 
-  .preview-banner {
-    background: linear-gradient(135deg, hsl(45, 90%, 50%), hsl(24, 90%, 50%));
-  }
-
-  .test-banner {
-    background: linear-gradient(135deg, hsl(200, 80%, 45%), hsl(220, 80%, 45%));
-  }
-
-  .colector-layout.has-preview .cuestionario-header,
-  .colector-layout.has-test .cuestionario-header {
-    top: 33px; /* Desplazar cabecera para no taparse */
-  }
-
-  .colector-layout.has-preview .welcome-screen,
-  .colector-layout.has-test .welcome-screen {
-    margin-top: 75px;
-  }
-
-  .colector-layout.has-preview .cuestionario-body,
-  .colector-layout.has-test .cuestionario-body {
-    padding-top: 110px;
-  }
-
-  /* Layout de meta chips en la bienvenida */
-  .meta-row {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  /* Toast de autosave */
   .toast-notification {
     position: fixed;
-    bottom: 100px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--text-main);
     color: var(--bg-app);
-    padding: 8px 20px;
-    border-radius: 9999px;
+    padding: 8px 16px;
+    border-radius: 20px;
     font-size: 13px;
     font-weight: 600;
-    z-index: 200;
-    white-space: nowrap;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    animation: toastIn 0.25s ease forwards;
-    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
-  /* Overlay de carga al enviar */
   .loading-overlay {
     position: fixed;
     inset: 0;
-    background: hsla(var(--hue-neutral), 30%, 97%, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    z-index: 150;
-  }
-
-  :global(.dark-theme) .loading-overlay {
-    background: hsla(var(--hue-neutral), 40%, 6%, 0.85);
+    gap: 16px;
+    z-index: 1000;
+    color: #fff;
   }
 
   .loading-msg {
     font-size: 16px;
     font-weight: 600;
+  }
+
+  .instruction-txt {
+    font-size: 13px;
     color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .error-banner {
+    background-color: hsla(0, 80%, 50%, 0.1);
+    color: var(--danger-color);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid hsla(0, 80%, 50%, 0.2);
+  }
+
+  .preview-banner {
+    background: #ff9800;
+    color: #000;
+    text-align: center;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 13px;
   }
 </style>

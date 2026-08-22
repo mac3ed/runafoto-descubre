@@ -4,13 +4,15 @@
 
   // Props de Svelte 5
   let { 
-    title = '¡Muchas gracias!',
-    message = 'Tus respuestas se han registrado con éxito. Ya puedes cerrar esta pestaña.',
-    identificadorSujeto = ''
+    title = '¡Muchas gracias por tus respuestas! 📸✨',
+    message = 'Tus opiniones y sugerencias nos ayudan directamente a mejorar los nuevos espacios y hacer que tus prácticas sean cada día más increíbles.',
+    identificadorSujeto = '',
+    onreset
   }: { 
-    title?: string;
-    message?: string;
+    title?: string; 
+    message?: string; 
     identificadorSujeto?: string;
+    onreset?: () => void;
   } = $props();
 
   let animated = $state(false);
@@ -39,13 +41,23 @@
 
     {#if identificadorSujeto}
       <p class="completion-subtitle font-display">
-        Completado por: <span class="highlight">{identificadorSujeto}</span>
+        {identificadorSujeto}
       </p>
     {/if}
 
     <p class="completion-message">
       {message}
     </p>
+
+    <div class="info-footer">
+      <span>🔒 Respuestas registradas de forma segura y confidencial.</span>
+    </div>
+
+    {#if onreset}
+      <button type="button" class="restart-button font-display" onclick={onreset}>
+        <span>🔄 Enviar otra respuesta (otro alumno)</span>
+      </button>
+    {/if}
   </div>
 </div>
 
@@ -56,31 +68,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px 16px;
+    padding: 32px 16px;
   }
 
   .completion-card {
     width: 100%;
-    max-width: 500px;
-    padding: 40px 24px;
+    max-width: 520px;
+    padding: 44px 28px;
     border-radius: var(--radius-card);
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 22px;
     box-shadow: var(--shadow-premium);
   }
 
   .completion-title {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--text-main);
-    line-height: 1.2;
+    line-height: 1.3;
   }
 
   .completion-subtitle {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--text-muted);
     background-color: hsla(var(--hue-primary), 80%, 58%, 0.08);
@@ -88,14 +100,10 @@
     border-radius: 9999px;
   }
 
-  .completion-subtitle .highlight {
-    color: var(--primary-color);
-  }
-
   .completion-message {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text-muted);
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
   .info-footer {
@@ -109,7 +117,7 @@
     padding: 10px 14px;
     border-radius: 8px;
     border: 1px dashed var(--border-glass);
-    margin-top: 8px;
+    margin-top: 4px;
     width: 100%;
   }
 
@@ -117,23 +125,34 @@
     background-color: hsla(var(--hue-neutral), 30%, 14%, 0.3);
   }
 
-  .info-icon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    color: var(--success-color);
+  .restart-button {
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    padding: 10px 20px;
+    border-radius: var(--radius-button);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
 
-  /* Animación sofisticada del Checkmark SVG */
+  .restart-button:hover {
+    background-color: hsla(var(--hue-neutral), 20%, 90%, 0.4);
+    border-color: var(--primary-color);
+  }
+
+  /* Animación del Checkmark SVG */
   .checkmark-wrapper {
-    width: 80px;
-    height: 80px;
+    width: 76px;
+    height: 76px;
     display: block;
   }
 
   .checkmark {
-    width: 80px;
-    height: 80px;
+    width: 76px;
+    height: 76px;
     border-radius: 50%;
     display: block;
     stroke-width: 2.5;
