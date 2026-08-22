@@ -1493,12 +1493,12 @@ const getDimensionName = (dimId: string) => {
                   <table class="control-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13.5px;">
                     <thead>
                       <tr style="border-bottom: 1px solid var(--border-glass);">
-                        <th style="padding: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Colaborador / Área</th>
-                        <th style="padding: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Rol Evaluado</th>
+                        <th style="padding: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Audiencia / Destinatario</th>
+                        <th style="padding: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Cuestionario</th>
                         <th style="padding: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Estado</th>
-                        <th style="padding: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Participación (Muestra)</th>
+                        <th style="padding: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Respuestas / Avance</th>
                         <th style="padding: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; text-align: right;">Acciones</th>
-</tr>
+                      </tr>
                     </thead>
                     <tbody>
                       {asignaciones.map(a => {
@@ -1560,19 +1560,19 @@ const getDimensionName = (dimId: string) => {
             )}
 
             {/* Panel de Gestión de Enlaces Activos */}
-            <h2 class="section-heading font-display">Crear Enlace de Acceso Seguro</h2>
-            <section class="management-section glass" style="max-width: 650px; margin: 0 auto 36px auto;">
+            <h2 class="section-heading font-display">Crear Nuevo Enlace de Encuesta</h2>
+            <section class="management-section glass" style="max-width: 680px; margin: 0 auto 36px auto;">
               <div class="mgmt-card create-card" style="width: 100%;">
-                <p class="description-helper" style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.4;">
-                  Genera un nuevo enlace seguro para que los colaboradores o áreas respondan la investigación asignada.
-                  Al crearlo, serás redirigido automáticamente a su espacio individual de trazabilidad y configuración.
+                <p class="description-helper" style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">
+                  Genera un enlace web personalizado para compartir con <strong>alumnos, colaboradores o clientes</strong>. 
+                  Si la encuesta es abierta para que participen muchas personas, elige la opción <strong>Grupal / Masiva</strong>.
                 </p>
                 <form method="POST" class="mgmt-form">
                   <input type="hidden" name="action" value="create_assignment" />
                   <input type="hidden" name="hitoId" value={activeHitoId} />
                   
                   <div class="form-group">
-                    <label for="cuestionarioId">Rol a Evaluar:</label>
+                    <label for="cuestionarioId" style="font-weight: 600; font-size: 13.5px;">Cuestionario / Plantilla a Aplicar:</label>
                     <select name="cuestionarioId" required class="form-input glass" style="width: 100%; margin: 0;">
                       {cuestionarios.map(c => (
                         <option value={c.id} selected={c.id === selectCuestionarioId}>{c.nombre}</option>
@@ -1581,34 +1581,47 @@ const getDimensionName = (dimId: string) => {
                   </div>
 
                   <div class="form-group">
-                    <label for="identificadorSujeto">Nombre del Colaborador o Área (Identificador):</label>
-                    <input type="text" name="identificadorSujeto" placeholder="Ej: Jenne, Bodas, Escuela, Producción" required class="form-input glass" />
+                    <label for="identificadorSujeto" style="font-weight: 600; font-size: 13.5px;">Audiencia o Destinatario (Identificador):</label>
+                    <input type="text" name="identificadorSujeto" placeholder="Ej: Alumnos Escuela RunaFoto, Douglas (Dirección), Clientes Bodas" required class="form-input glass" />
+                    <span style="font-size: 11.5px; color: var(--text-muted); display: block; margin-top: 4px;">Nombre descriptivo que aparecerá en los reportes y estadísticas.</span>
                   </div>
 
                   <div class="form-row-2">
                     <div class="form-group">
-                      <label for="tipoSujeto">Tipo de Evaluación:</label>
-                      <select name="tipoSujeto" class="form-input glass" id="new-tipo-sujeto">
-                        <option value="INDIVIDUAL">Individual (1 Colaborador)</option>
-                        <option value="GRUPAL">Grupal (Área / Múltiples)</option>
+                      <label for="tipoSujeto" style="font-weight: 600; font-size: 13.5px;">Modalidad de Enlace:</label>
+                      <select name="tipoSujeto" class="form-input glass" id="new-tipo-sujeto" onchange="
+                        const isGrupal = this.value === 'GRUPAL';
+                        const inputMuestra = document.getElementById('new-muestra-esperada');
+                        const helper = document.getElementById('muestra-helper-txt');
+                        if (isGrupal) {
+                          inputMuestra.value = '5000';
+                          if (helper) helper.innerText = 'Capacidad abierta: permite miles de respuestas simultáneas.';
+                        } else {
+                          inputMuestra.value = '1';
+                          if (helper) helper.innerText = 'Enlace personal único: se cierra al finalizar 1 respuesta.';
+                        }
+                      ">
+                        <option value="GRUPAL" selected>👥 Grupal / Masivo (1 enlace para múltiples alumnos o público)</option>
+                        <option value="INDIVIDUAL">👤 Individual (Enlace personal para 1 colaborador)</option>
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="muestraEsperada">Muestra Esperada:</label>
-                      <input type="number" name="muestraEsperada" value="1" min="1" class="form-input glass" id="new-muestra-esperada" />
+                      <label for="muestraEsperada" style="font-weight: 600; font-size: 13.5px;">Muestra Esperada:</label>
+                      <input type="number" name="muestraEsperada" value="5000" min="1" class="form-input glass" id="new-muestra-esperada" />
+                      <span id="muestra-helper-txt" style="font-size: 11.5px; color: var(--text-muted); display: block; margin-top: 4px;">Capacidad abierta: permite miles de respuestas simultáneas.</span>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="estado">Estado Inicial del Enlace:</label>
+                    <label for="estado" style="font-weight: 600; font-size: 13.5px;">Estado Inicial del Enlace:</label>
                     <select name="estado" class="form-input glass">
-                      <option value="LANZADO">Lanzado (Estadísticas reales)</option>
-                      <option value="TEST">Test / Prueba (Estadísticas aisladas)</option>
-                      <option value="BORRADOR">Borrador (Acceso denegado temporalmente)</option>
+                      <option value="LANZADO">🚀 Lanzado (Activo para recibir respuestas reales)</option>
+                      <option value="TEST">🧪 Test / Prueba (Pruebas preliminares aisladas)</option>
+                      <option value="BORRADOR">🔒 Borrador (Acceso cerrado temporalmente)</option>
                     </select>
                   </div>
 
-                  <button type="submit" class="mgmt-btn-submit shine-effect" style="margin-top: 10px;">Generar Enlace y Configurar</button>
+                  <button type="submit" class="mgmt-btn-submit shine-effect" style="margin-top: 14px; font-weight: 700;">Generar Enlace de Encuesta 🚀</button>
                 </form>
               </div>
             </section>
