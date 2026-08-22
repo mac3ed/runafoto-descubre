@@ -542,34 +542,6 @@
     line-height: 1.6;
   }
 
-  .meta-row {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .meta-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
-    background-color: hsla(var(--hue-neutral), 20%, 90%, 0.5);
-    padding: 6px 14px;
-    border-radius: 9999px;
-  }
-
-  :global(.dark-theme) .meta-tag {
-    background-color: hsla(var(--hue-neutral), 30%, 18%, 0.5);
-  }
-
-  .meta-icon {
-    width: 15px;
-    height: 15px;
-  }
-
   .start-button {
     background: var(--primary-color);
     color: #fff;
