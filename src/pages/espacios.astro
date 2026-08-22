@@ -47,7 +47,7 @@ try {
 
     // 2. Obtener el cuestionario asociado
     const [dbCuestionario] = await sql`
-      SELECT id, nombre, descripcion, version FROM cuestionario WHERE id = ${dbAsignacion.cuestionario_id}
+      SELECT id, nombre, descripcion, version, metadatos FROM cuestionario WHERE id = ${dbAsignacion.cuestionario_id}
     `;
 
     if (!dbCuestionario) {
@@ -57,7 +57,8 @@ try {
         id: dbCuestionario.id,
         nombre: dbCuestionario.nombre,
         descripcion: dbCuestionario.descripcion,
-        version: dbCuestionario.version
+        version: dbCuestionario.version,
+        metadatos: dbCuestionario.metadatos || {}
       };
 
       // 3. Obtener las preguntas ordenadas

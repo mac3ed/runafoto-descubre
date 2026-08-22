@@ -306,36 +306,27 @@
     <div class="welcome-screen">
       <div class="welcome-card glass">
         <div class="logo-area">
-          <img src="/logo-runafoto.svg" alt="RunaFoto" style="height: 48px; width: auto;" />
+          <img 
+            src={cuestionario?.metadatos?.logoUrl || '/logo-escuela.png'} 
+            alt="RunaFoto" 
+            style="max-height: 80px; max-width: 260px; width: auto; height: auto; object-fit: contain;" 
+          />
         </div>
         
         <h1 class="welcome-title font-display">
-          ¡Queremos saber de ti y tu experiencia! 📸✨
+          {cuestionario.nombre}
         </h1>
         
         <p class="welcome-desc">
-          Cuéntanos qué te parecen los <strong>Nuevos Espacios</strong> inaugurados en nuestra sede y cómo podemos hacer que tus prácticas sean cada día más increíbles.
+          {cuestionario.descripcion}
         </p>
-
-        <div class="meta-row">
-          <div class="meta-tag">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="meta-icon">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span>~{tiempoEstimado} minutos</span>
-          </div>
-          <div class="meta-tag">
-            <span>✨ {preguntas.length} preguntas rápidas</span>
-          </div>
-        </div>
 
         <button 
           type="button" 
           class="start-button font-display shine-effect" 
           onclick={() => paso = 'cuestionario'}
         >
-          ¡Queremos saber de ti! Comenzar 🚀
+          ¡Ayúdanos a mejorar! 🚀
         </button>
 
         <p class="anonym-note">
@@ -349,7 +340,12 @@
     <div class="cuestionario-header">
       <ProgressBar value={progreso} variant="slim" />
       <div class="header-details">
-        <img src="/logo-runafoto.svg" alt="RunaFoto" class="logo-header" style="height: 22px; width: auto;" />
+        <img 
+          src={cuestionario?.metadatos?.logoUrl || '/logo-escuela.png'} 
+          alt="RunaFoto" 
+          class="logo-header" 
+          style="max-height: 28px; max-width: 120px; width: auto; object-fit: contain;" 
+        />
         <span class="progress-txt font-display">Pregunta {preguntaActualIndex + 1} de {preguntas.length}</span>
       </div>
     </div>
