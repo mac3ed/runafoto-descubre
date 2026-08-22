@@ -1,6 +1,6 @@
 -- ==============================================================================
 -- INAUGURACIÓN NUEVOS ESPACIOS 2026 - ENCUESTA ALUMNOS ESCUELA RUNAFOTO (v3 - 12 Preguntas)
--- Enfoque ágil, juvenil, 12 preguntas esenciales y soporte multi-alumno
+-- Enfoque ágil, juvenil, 12 preguntas esenciales y soporte multi-alumno desde cero
 -- ==============================================================================
 
 -- 1. Insertar o actualizar el Hito de Nuevos Espacios
@@ -32,7 +32,10 @@ ON CONFLICT (id) DO UPDATE SET
   metadatos = EXCLUDED.metadatos,
   version = 3;
 
--- 4. Limpiar preguntas previas del cuestionario
+-- 4. LIMPIAR RESPUESTAS PREVIAS DE PRUEBA SOLO DE ESTA ENCUESTA (Mantiene intactas las anteriores)
+DELETE FROM respuesta WHERE asignacion_id = 'a8888888-8888-8888-8888-888888888888';
+
+-- Limpiar preguntas previas del cuestionario de espacios
 DELETE FROM pregunta WHERE cuestionario_id = 'c8888888-8888-8888-8888-888888888888';
 
 -- 5. Insertar EXACTAMENTE 12 Preguntas Esenciales
@@ -127,7 +130,7 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
   "📆 1 vez al mes"
 ]'::jsonb, 'espacios_utilidad', 3, 9),
 
--- 10. Equipos y Acompañamiento (Fusionada)
+-- 10. Equipos y Acompañamiento
 ('b8000000-0000-0000-0000-000000000010', 'c8888888-8888-8888-8888-888888888888', 'ESP_10', '¿Cómo sientes la disponibilidad de equipos y el acompañamiento docente para tus prácticas?', 'OPCION_MULTIPLE', '[
   "🚀 Excelente: equipos listos y siempre hay apoyo de los profes",
   "✅ Muy buena, cumple con lo que necesito",
@@ -147,11 +150,13 @@ INSERT INTO pregunta (id, cuestionario_id, codigo, texto, tipo, opciones, dimens
 -- 12. Nombre y/o Sugerencia Final (100% Opcional - No bloquea)
 ('b8000000-0000-0000-0000-000000000012', 'c8888888-8888-8888-8888-888888888888', 'ESP_12', '¿Cuál es tu nombre o sugerencia final para la Escuela? (Opcional — puedes poner solo tu nombre, tu idea o dejarlo en blanco 🤫✨)', 'CORTA', '[]'::jsonb, 'espacios_mejoras', 3, 12);
 
--- 6. Insertar Asignación Grupal con Muestra Amplia para Alumnos (Capacidad 5000 respuestas)
-INSERT INTO asignacion (id, cuestionario_id, token, tipo_sujeto, identificador_sujeto, muestra_esperada, estado) VALUES
-('a8888888-8888-8888-8888-888888888888', 'c8888888-8888-8888-8888-888888888888', 'token-espacios-alumnos', 'GRUPAL', 'Alumnos Escuela RunaFoto', 5000, 'LANZADO')
+-- 6. Insertar o reiniciar Asignación Grupal en estado limpio (Capacidad 5000 respuestas)
+INSERT INTO asignacion (id, cuestionario_id, token, tipo_sujeto, identificador_sujeto, muestra_esperada, estado, completado_en, guardado_parcial) VALUES
+('a8888888-8888-8888-8888-888888888888', 'c8888888-8888-8888-8888-888888888888', 'token-espacios-alumnos', 'GRUPAL', 'Alumnos Escuela RunaFoto', 5000, 'LANZADO', NULL, FALSE)
 ON CONFLICT (token) DO UPDATE SET
   cuestionario_id = EXCLUDED.cuestionario_id,
   identificador_sujeto = EXCLUDED.identificador_sujeto,
   muestra_esperada = 5000,
-  estado = 'LANZADO';
+  estado = 'LANZADO',
+  completado_en = NULL,
+  guardado_parcial = FALSE;
