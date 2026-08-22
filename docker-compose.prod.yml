@@ -46,6 +46,7 @@ services:
       - db
     networks:
       - cuestionario_net
+      - runafoto-edge
 
 volumes:
   postgres_descubrimiento_data_v10:
@@ -53,3 +54,5 @@ volumes:
 networks:
   cuestionario_net:
     driver: bridge
+  runafoto-edge:
+    external: true
