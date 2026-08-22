@@ -1601,8 +1601,8 @@ const getDimensionName = (dimId: string) => {
                           if (helper) helper.innerText = 'Enlace personal único: se cierra al finalizar 1 respuesta.';
                         }
                       ">
-                        <option value="GRUPAL" selected>👥 Grupal / Masivo (1 enlace para múltiples alumnos o público)</option>
-                        <option value="INDIVIDUAL">👤 Individual (Enlace personal para 1 colaborador)</option>
+                        <option value="GRUPAL" selected>👥 Grupal / Masivo (Alumnos o Público)</option>
+                        <option value="INDIVIDUAL">👤 Individual (1 Colaborador)</option>
                       </select>
                     </div>
                     <div class="form-group">
@@ -4089,16 +4089,22 @@ const getDimensionName = (dimId: string) => {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .form-group label {
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 600;
     color: var(--text-muted);
   }
 
   .form-input {
-    height: 40px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    height: 42px;
     padding: 0 12px;
     border-radius: 8px;
     border: 1px solid var(--border-glass);
@@ -4121,12 +4127,22 @@ const getDimensionName = (dimId: string) => {
     background-position: right 10px center;
     background-size: 16px;
     padding-right: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .form-row-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.6fr 1fr;
     gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: start;
+  }
+
+  .form-row-2 > * {
+    min-width: 0;
   }
 
   .mgmt-btn-submit {
